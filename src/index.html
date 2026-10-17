@@ -13,7 +13,7 @@
 <body>
 <header class="hero">
   <nav class="topnav" aria-label="Sections">
-    <a href="#now">Now</a><a href="#quiz">Quiz</a><a href="#gangs">Gangs</a><a href="#ghosts">Wild cards</a><a href="#birds">Birds</a><a href="#mammals">Fur</a><a href="#herps">Scales</a><a href="#insects">Bugs</a><a href="#crawlies">Bite</a>
+    <a href="#now">Now</a><a href="#describe">ID a bird</a><a href="#journal">Journal</a><a href="#quiz">Quiz</a><a href="#gangs">Gangs</a><a href="#ghosts">Wild cards</a><a href="#birds">Birds</a><a href="#mammals">Fur</a><a href="#herps">Scales</a><a href="#insects">Bugs</a><a href="#crawlies">Bite</a>
   </nav>
   <div class="hero-in">
     <div id="heroPics" class="heropics" aria-label="Most likely birds"></div>
@@ -38,6 +38,18 @@
     <h2 class="t"><span class="tag">Right now</span>What's Out There in <em id="nowMonth">{{MONTH}}</em></h2>
     <p class="sub">Likely &amp; possible birds ranked by how often they turn up nearby in <span class="nowm">{{MONTH}}</span> — share of all bird records within 8 km that month (mostly eBird checklists).</p>
     <ol id="nowList" class="nowlist"></ol>
+  </section>
+
+  <section id="describe" class="sec">
+    <h2 class="t"><span class="tag">What was that?!</span>Describe-a-Bird</h2>
+    <p class="sub">Type what you saw — colors, size, markings, what it was doing — or tap traits. Matches come from a trait table for all {{BIRDS}} birds on the list, ranked toward birds that are <b class="lk">likely</b> here in <span class="nowm">{{MONTH}}</span>. Works offline once loaded. Tap a photo for male / female shots.</p>
+    <div id="describeBox" class="describe"></div>
+  </section>
+
+  <section id="journal" class="sec">
+    <h2 class="t"><span class="tag">Your sightings</span>Bird Journal</h2>
+    <p class="sub">Log what shows up: species, when, how many, where you saw it. <b>Saved on this device only</b> — private to this browser, never published. Export a JSON or CSV backup any time.</p>
+    <div id="journalBox" class="journal"></div>
   </section>
 
   <section id="quiz" class="sec">
@@ -81,9 +93,10 @@
   <p><b>Left out:</b> ocean-only animals (whales, dolphins, seals, sea turtles, gannets, shearwaters, storm-petrels, jaegers, alcids, loons, scoters, eiders, pelicans and similar) — {{REMOVED}} species dropped by that rule. Names that couldn't be matched to an iNaturalist species ({{UNMATCHED}}) are also left out. <b>Coverage limits:</b> birds are very well covered thanks to eBird. Insects, spiders and herps depend on what people happened to photograph, so the real number of bugs is far higher than shown — mostly butterflies, moths, dragonflies, bees and beetles make the list.</p>
   <p><b>"Logged near here":</b> research-grade iNaturalist sightings within about 5 km on the mainland (separate count, from an earlier pull).</p>
   <p><b>Habitat:</b> {{HABSRC}}.</p>
-  <p><b>Photos:</b> from iNaturalist, only when licensed CC0, CC BY, CC BY-SA or CC BY-NC; each card shows the photographer credit and license. <b>Sounds:</b> {{SOUNDS}} birds have one clip each from a research-grade iNaturalist observation with a CC0 / CC BY / CC BY-SA / CC BY-NC sound license, preferring recordings from near Linwood, then New Jersey, then the eastern US; clips are trimmed to 15 seconds or less and re-encoded as mono MP3, credited next to each player. xeno-canto wasn't used because its API needs an account key. <b>Fun facts:</b> the first lines of each species' Wikipedia article, via the iNaturalist API (<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>).</p>
+  <p><b>Photos:</b> from iNaturalist, only when licensed CC0, CC BY, CC BY-SA or CC BY-NC; each card shows the photographer credit and license. <b>Sounds:</b> {{SOUNDS}} birds have one clip each from a research-grade iNaturalist observation with a CC0 / CC BY / CC BY-SA / CC BY-NC sound license, preferring recordings from near Linwood, then New Jersey, then the eastern US; clips are trimmed to 15 seconds or less and re-encoded as mono MP3, credited next to each player. xeno-canto wasn't used because its API needs an account key. <b>Photo galleries:</b> tap any photo. Bird photos labeled Male / Female / Juvenile come only from research-grade iNaturalist observations that carry that Sex or Life Stage annotation (open licences only, credited on every photo); {{MF}} of {{BIRDS}} birds have both male- and female-labeled photos. Extra photos are the species' curated iNaturalist photos, unlabeled. "How to tell male vs female" notes are verbatim sentences from each bird's Wikipedia article (<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>), shown for {{SEXNOTES}} birds. <b>Describe-a-Bird traits:</b> a hand-curated field-guide trait table (colors, size, markings, behavior, habitat) for {{TRAITS}} birds, cross-checked against Wikipedia — a helper, not an authority. <b>Journal:</b> stored only in your browser (localStorage + IndexedDB); this site has no server and never receives it. <b>Fun facts:</b> the first lines of each species' Wikipedia article, via the iNaturalist API (<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>).</p>
   <p class="small">GBIF.org ({{DATE}}) GBIF Occurrence Search, https://www.gbif.org. Not a field guide or official checklist. Fonts: Anton &amp; Space Grotesk (SIL OFL).</p>
 </footer>
 <script src="assets/app.js?v={{VER}}" defer></script>
+<script src="assets/extra.js?v={{VER}}" defer></script>
 </body>
 </html>

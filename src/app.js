@@ -62,11 +62,11 @@ function card(s){
   var fact=s.fact?'<details class="fx"><summary>Fun fact</summary><p class="fact">'+esc(s.fact)+
     (s.wiki_url?' <a href="'+esc(s.wiki_url)+'" target="_blank" rel="noopener">— Wikipedia</a>':'')+'</p></details>':"";
   var where=s.cat?'<div class="where w-'+s.cat+'">'+(s.cat==="marsh"?"Flyover / nearby marsh":s.cat==="raptor"?"Raptor":"Yard &amp; neighborhood")+'</div>':'';
-  c.innerHTML='<a class="ph" href="'+turl(s)+'" target="_blank" rel="noopener" tabindex="-1">'+photoHtml(s)+badge+'</a>'+
+  c.innerHTML='<button type="button" class="ph" data-gal="'+s.id+'" aria-label="Open photo gallery: '+esc(name(s))+'">'+photoHtml(s)+badge+(s.ph?'<span class="galhint" aria-hidden="true">'+(s.g==="birds"?"\u2642\u2640 ":"")+'PHOTOS</span>':'')+'</button>'+
     '<div class="cb"><h3><a href="'+turl(s)+'" target="_blank" rel="noopener">'+esc(name(s))+'</a></h3>'+
     '<div class="sci">'+esc(s.sci)+'</div>'+
     '<div class="meta"><span class="sea">'+esc(s.season||"")+'</span><span>'+esc(s.family_com||s.family||"")+'</span></div>'+
-    where+season(s)+evid(s)+sndHtml(s)+fact+attrHtml(s)+'</div>';
+    where+season(s)+evid(s)+sndHtml(s)+fact+'<button type="button" class="logbtn" data-log="'+s.id+'">+ Log this '+(s.g==="birds"?"bird":"sighting")+'</button>'+attrHtml(s)+'</div>';
   return c;
 }
 
@@ -74,7 +74,7 @@ function renderHero(birds){
   var box=document.getElementById("heroPics");
   birds.filter(function(s){return s.ph&&s.lik==="likely";}).sort(function(a,b){return b.A-a.A;}).slice(0,4).forEach(function(s,i){
     var f=el("figure","hp hp"+i);
-    f.innerHTML='<a href="'+turl(s)+'" target="_blank" rel="noopener"><img src="'+esc(s.ph.url)+'" alt="'+esc(name(s))+'"></a><figcaption><b>'+esc(name(s))+'</b><span>'+esc(s.ph.attr)+' · '+esc(s.ph.license)+'</span></figcaption>';
+    f.innerHTML='<a href="'+turl(s)+'" data-gal="'+s.id+'"><img src="'+esc(s.ph.url)+'" alt="'+esc(name(s))+'"></a><figcaption><b>'+esc(name(s))+'</b><span>'+esc(s.ph.attr)+' · '+esc(s.ph.license)+'</span></figcaption>';
     box.appendChild(f);});
 }
 function renderNow(birds){
@@ -86,7 +86,7 @@ function renderNow(birds){
   function more(k){
     list.slice(shown,shown+k).forEach(function(s,i){
       var li=el("li");
-      li.innerHTML='<span class="rk">'+(shown+i+1)+'</span>'+(s.ph?'<img loading="lazy" src="'+esc(s.ph.sq||s.ph.url)+'" alt="'+esc(name(s))+'" title="Photo: '+esc(s.ph.attr)+' ('+esc(s.ph.license)+')">':'<div class="noimg">?</div>')+
+      li.innerHTML='<span class="rk">'+(shown+i+1)+'</span>'+(s.ph?'<button type="button" class="nowph" data-gal="'+s.id+'" aria-label="Photos of '+esc(name(s))+'"><img loading="lazy" src="'+esc(s.ph.sq||s.ph.url)+'" alt="'+esc(name(s))+'" title="Photo: '+esc(s.ph.attr)+' ('+esc(s.ph.license)+')"></button>':'<div class="noimg">?</div>')+
         '<div><div class="nm"><a href="'+turl(s)+'" target="_blank" rel="noopener">'+esc(name(s))+'</a></div><div class="sc">'+esc(s.sci)+'</div><div class="ct"><span class="tx-'+s.lik+'">'+LIK[s.lik]+'</span> · '+s.m[m]+' per 10k</div></div>'+(s.snd?playBtn(s):"");
       ol.appendChild(li);});
     shown+=k;
@@ -209,6 +209,8 @@ function renderGroup(sec,items,isBirds){
 fetch("data/species.json").then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){
   var by={};d.species.forEach(function(s){(by[s.g]=by[s.g]||[]).push(s);});
   var birds=by.birds||[];
+  window.LW={species:d.species,birds:birds,esc:esc,name:name,turl:turl,el:el,fmt:fmt,CUR:CUR,MON:MON,MONL:MONL,LIK:LIK,playBtn:playBtn};
+  document.dispatchEvent(new Event("lw-data"));
   renderHero(birds);renderNow(birds);renderQuiz(birds);renderGangs(birds);renderGhosts(birds);
   Array.prototype.forEach.call(document.querySelectorAll(".grp"),function(sec){
     var g=sec.getAttribute("data-g"),items=by[g]||[];

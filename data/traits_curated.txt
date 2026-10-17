@@ -1,0 +1,316 @@
+# Curated bird traits for the describe-a-bird search. Written from standard field-guide knowledge
+# (Sibley / National Geographic / Cornell "All About Birds" style descriptions) and spot-checked
+# against Wikipedia (see README). One line per iNaturalist taxon id:
+# id | approx length cm | main colours (adult male / adult) | extra colours of female or immature | marks | behaviour | habitat
+# Vocabulary: colours red orange yellow olive green blue brown rufous buff gray black white pink purple iridescent
+# marks: crest Xcap Xhead Xcrown Xthroat Xbreast Xbelly Xback Xwing Xtail Xrump Xbill Xlegs Xeye Xface Xneck Xshoulder Xmask
+#        (X = a colour) streaked-breast spotted-breast barred streaked spotted wingbars eyering eyestripe long-tail short-tail
+#        forked-tail long-legs long-neck long-bill curved-bill hooked-bill conical-bill thin-bill flat-bill bib iridescent white-tail-edges
+# behaviour: feeder ground trunk flyover soaring swimming diving wading hovering flocks night flycatching wires probing shrubs treetops
+# habitat: yard woods marsh water field beach sky
+9083|22|red|brown buff|crest red-crest black-face black-mask red-bill orange-bill conical-bill|feeder shrubs ground|yard woods
+3454|31|brown buff gray|pink|long-tail spotted black-spots pointed-tail small-head|feeder ground wires flocks|yard field
+12727|25|gray brown orange|rufous|orange-breast red-breast rufous-breast eyering white-eyering yellow-bill streaked-throat|ground yard flocks|yard woods field
+144814|12|gray black white|buff|black-cap black-throat bib white-face white-cheek|feeder shrubs flocks|yard woods
+7513|14|rufous brown buff|orange|eyestripe white-eyestripe cocked-tail curved-bill buff-belly white-throat|shrubs ground feeder|yard woods
+8229|28|blue white black gray|blue|crest blue-crest black-necklace white-face white-wing wingbars long-tail barred-tail|feeder ground flocks treetops|yard woods
+13632|16|gray white|rufous|crest gray-crest black-forehead rufous-flanks large-eye|feeder shrubs flocks|yard woods
+199840|15|red brown gray|brown|red-head red-cap red-breast red-throat streaked streaked-breast streaked-belly red-rump conical-bill|feeder wires flocks|yard
+9184|17|brown gray white black yellow|buff|white-throat striped-head black-crown white-crown yellow-lores streaked-back gray-breast|ground feeder shrubs flocks|yard woods
+792988|17|black white|red|red-nape red-head red-cap spotted spotted-wing white-back thin-bill small-bill|trunk feeder|yard woods
+14801|15|gray white black|rufous|black-cap white-face white-breast blue-gray-back gray-back thin-bill long-bill|trunk feeder|yard woods
+18205|24|white gray black red|buff|red-cap red-nape red-head red-crown barred barred-back black-white-back red-belly|trunk feeder|yard woods
+14995|22|gray black|rufous|black-cap rufous-undertail long-tail plain-breast|shrubs ground feeder|yard woods
+13858|16|brown gray black white rufous|buff|black-bib black-throat bib gray-cap rufous-neck wingbars streaked-back conical-bill|feeder ground flocks|yard field
+9744|22|black red yellow|brown|red-shoulder yellow-shoulder streaked streaked-breast|wires flocks feeder ground|marsh field yard
+144514|42|white gray black|brown|black-head black-hood red-bill dark-wingtips gray-back|flyover flocks swimming beach|beach marsh water sky
+7089|100|brown black white gray|brown|black-neck long-neck white-cheek white-chinstrap|swimming ground flocks flyover|water field marsh yard
+9100|16|brown white gray|rufous|streaked-breast streaked central-spot breast-spot brown-streaks long-tail|ground shrubs feeder|yard marsh field
+1578489|61|white gray black|brown|gray-back pink-legs yellow-bill red-spot-bill dark-wingtips|flyover swimming flocks|beach water marsh sky
+144455|99|white|white|yellow-bill long-legs black-legs long-neck|wading|marsh water
+145245|14|gray yellow black white|brown|yellow-rump yellow-patch white-throat streaked-breast wingbars yellow-flanks|flocks shrubs flycatching|yard woods marsh
+6930|58|green gray brown white|brown buff|green-head iridescent white-neck-ring yellow-bill orange-bill blue-wing curled-tail|swimming flocks|water marsh
+14850|22|black iridescent purple green|brown|spotted yellow-bill short-tail white-spots|ground flocks wires feeder|yard field
+8001|39|black|black|thin-bill|flocks flyover ground wires|yard beach marsh
+116999|58|brown white|brown|white-belly white-head black-eyestripe hooked-bill crooked-wings|soaring hovering diving flyover|water marsh sky
+367477|36|gray brown buff|brown|long-bill barred barred-flanks short-tail|ground probing|marsh
+9602|32|black iridescent purple blue bronze|brown|yellow-eye long-tail keel-tail|ground flocks feeder wires|yard field marsh
+7562|12|brown|brown|barred-tail cocked-tail plain thin-bill|shrubs|yard woods
+6432|9|green white red|green white|red-throat iridescent thin-bill long-bill forked-tail|hovering feeder|yard woods
+4956|117|gray blue white black|gray|long-legs long-neck long-bill yellow-bill black-crown white-face plumes|wading flyover|marsh water
+8021|45|black|black|thick-bill|ground flocks flyover|yard field woods
+6924|58|brown black|brown|dark-body yellow-bill purple-wing white-underwing|swimming|marsh water
+145310|13|yellow black white|olive brown|black-cap black-wing wingbars orange-bill conical-bill|feeder flocks|yard field
+4940|61|white|white|black-bill yellow-feet black-legs long-legs long-neck plumes yellow-face|wading|marsh water
+4457|36|white gray black|white|black-cap black-mask orange-bill red-bill forked-tail long-tail|flyover diving hovering|marsh water beach sky
+20044|56|brown gray buff|brown|ear-tufts horns yellow-eye white-throat barred|night trunk|woods yard
+11935|14|blue white iridescent green|brown|white-belly blue-back forked-tail|flycatching flyover flocks|marsh field water sky
+3892|36|gray brown white|gray|yellow-legs long-legs long-bill spotted white-rump|wading probing|marsh
+4364|49|white gray black|brown|black-ring-bill ringed-bill yellow-bill yellow-legs gray-back dark-wingtips|flocks flyover ground|beach water yard field sky
+4756|69|black brown|brown|red-head bald-head pale-bill hooked-bill|soaring flyover|sky field
+18236|31|brown buff black|brown|spotted spotted-breast black-bib bib barred barred-back white-rump yellow-wing red-nape|ground trunk|yard woods field
+14823|11|blue gray rufous orange black white|gray buff|black-cap black-eyestripe white-eyestripe rufous-breast orange-breast thin-bill|trunk feeder|woods yard
+9601|42|black iridescent blue|brown rufous|long-tail keel-tail|ground flocks wires|marsh beach yard
+7109|46|black white brown rufous|brown|crest white-crest black-head thin-bill rufous-flanks|swimming diving|water marsh
+16028|21|olive gray yellow rufous|olive|yellow-belly gray-throat gray-breast rufous-tail crest|flycatching treetops|woods yard
+11901|17|blue rufous orange buff|blue|forked-tail long-tail rufous-throat orange-throat iridescent|flycatching flyover wires flocks|field marsh sky
+1454382|81|black brown|brown|orange-face hooked-bill long-neck|swimming diving flyover|water marsh
+5212|56|brown white rufous|brown|red-tail rufous-tail belly-band streaked hooked-bill|soaring wires|field sky woods
+6993|36|white black|brown|white-head-patch black-head iridescent|diving swimming|water
+10094|15|gray white|brown|gray-head gray-breast white-belly pink-bill white-tail-edges|ground feeder flocks|yard woods
+14886|25|gray white|gray|long-tail white-wing-patch wingbars white-tail-edges|wires ground shrubs|yard field
+144491|38|gray brown white|gray|long-legs long-bill white-wing-stripe gray-legs|wading probing flyover|marsh beach
+3751|64|white black|brown|curved-bill red-bill pink-bill red-face black-wingtips long-legs|wading probing flocks flyover|marsh yard
+4368|76|white black|brown|black-back pink-legs yellow-bill|flyover swimming|beach water sky
+3756|58|brown purple green iridescent|brown|curved-bill long-bill long-legs|wading probing flocks flyover|marsh
+19893|53|brown white gray|brown|barred barred-breast streaked-belly dark-eye round-head|night|woods
+7087|64|black brown white|brown|black-neck white-necklace long-neck|swimming flocks ground|water marsh
+145244|14|yellow olive white|gray olive|yellow-breast yellow-throat wingbars streaked-flanks|treetops trunk feeder|woods yard
+3862|15|gray brown white|gray|black-legs short-bill|probing flocks wading|beach marsh
+4981|64|gray black white|brown|black-cap black-back red-eye white-plumes stocky short-legs streaked|wading night|marsh water
+4496|46|black white|white|red-bill orange-bill long-bill black-cap|flyover flocks|beach water marsh
+1579017|42|gray blue rufous orange white|brown|barred barred-breast rufous-breast orange-breast long-tail red-eye black-cap hooked-bill|feeder flyover|yard woods
+558446|46|gray white|brown|white-rump owl-face long-tail long-wings|soaring flyover|marsh field
+4999|61|gray black white|brown|black-head white-cheek yellow-crown plumes stocky|wading night|marsh
+12890|17|brown rufous buff|brown|rufous-tail spotted-breast eyering white-eyering|ground shrubs|woods yard
+5305|79|brown white|brown|white-head white-tail yellow-bill hooked-bill|soaring flyover|water sky marsh
+4817|18|brown white black|brown|black-breast-band breast-band orange-legs orange-bill short-bill|ground probing|beach marsh
+117100|10|olive gray yellow orange black white|olive|yellow-crown orange-crown black-eyestripe white-eyestripe wingbars|treetops shrubs|woods yard
+6921|150|white|gray|orange-bill long-neck|swimming|water
+9424|21|black rufous white|brown rufous|black-head black-hood rufous-flanks white-belly red-eye long-tail white-tail-edges|ground feeder shrubs|yard woods
+4793|25|brown white black orange|brown|black-breast-band breast-band two-breast-bands orange-rump long-legs|ground flyover|field yard beach
+3857|22|brown gray black white|gray|black-belly curved-bill long-bill|probing flocks wading|beach marsh
+18463|21|black white red yellow|black white|red-cap red-throat red-crown white-wing-stripe barred yellow-belly|trunk|woods yard
+7428|18|brown gray yellow buff|brown|crest black-mask yellow-tail red-wingtips|flocks treetops|yard woods
+7601|13|brown buff white black|brown|eyestripe white-eyestripe streaked-back cocked-tail|shrubs|marsh
+2548|33|blue gray white|rufous|crest blue-crest white-collar breast-band rufous-belly long-bill|diving hovering flyover|water marsh
+10373|19|black brown|gray brown|brown-head conical-bill|feeder ground flocks|yard field
+1289388|11|olive gray|olive|eyering white-eyering wingbars red-crown|shrubs hovering|woods yard
+3864|15|brown|brown|yellow-legs thin-bill short-bill streaked-breast|probing flocks|marsh beach
+3869|28|brown rufous orange gray|gray|long-bill rufous-breast orange-breast white-rump|probing flocks wading|marsh beach
+3017|32|gray iridescent purple green white|gray|black-wingbars wingbars white-rump|ground flocks wires|yard field
+144815|13|gray black white buff|buff|black-cap black-throat bib white-face white-cheek|feeder flocks|yard woods
+4937|61|blue purple gray|white|long-legs long-neck long-bill|wading|marsh
+14898|29|rufous brown white buff|rufous|streaked-breast long-tail curved-bill yellow-eye wingbars|ground shrubs|yard woods
+145242|14|brown yellow olive rufous|brown|rufous-cap yellow-undertail streaked-breast tail-wagging|ground flocks|yard field marsh
+9721|13|olive yellow black|olive yellow|black-mask yellow-throat|shrubs|marsh field
+7044|43|black gray white|brown|ringed-bill gray-bill white-ring-bill peaked-head|swimming diving|water
+485176|51|gray brown rufous white green|brown|white-crown green-eyestripe blue-bill|swimming flocks grazing|water marsh
+9156|18|rufous brown gray|rufous|spotted-breast streaked-breast rufous-tail|ground feeder|yard woods
+3849|20|gray white black|gray|black-legs|probing flocks|beach
+17408|13|olive gray yellow white|olive|yellow-spectacles eyering white-eye yellow-flanks wingbars|shrubs|woods yard
+6571|13|gray brown|gray|short-tail long-wings|flyover flocks|sky yard
+4938|66|blue gray white purple|blue|white-belly long-legs long-neck long-bill|wading|marsh
+11867|20|purple blue black iridescent|gray|forked-tail|flyover flocks flycatching|field marsh sky
+5097|28|gray blue rufous orange white|brown|barred-breast rufous-breast long-tail square-tail hooked-bill|feeder flyover|yard woods
+10247|13|black orange|gray yellow|orange-wing orange-tail orange-flanks|flycatching treetops|woods
+3938|24|rufous orange black white|brown|orange-legs black-breast bib calico|probing flocks|beach
+4765|64|black gray|black|gray-head white-wingtips short-tail|soaring flyover|sky field
+9346|22|orange black|yellow olive|black-head black-hood orange-breast wingbars|treetops feeder|yard woods
+144530|23|white gray black|white|black-cap yellow-bill white-forehead forked-tail|hovering diving flyover|beach water
+4892|29|gray black white|gray|black-face black-breast black-belly white-crown spotted|ground probing flocks|beach marsh
+1651487|23|black white|red|red-nape white-back spotted-wing long-bill|trunk feeder|woods yard
+72458|19|brown white|brown|spotted-breast tail-wagging eyestripe orange-bill|wading probing|water marsh beach
+144883|10|brown|brown|barred short-tail cocked-tail|ground shrubs|woods
+4647|43|gray blue white black|brown|black-hood black-mask helmet barred hooked-bill|flyover diving soaring|sky marsh beach
+850859|38|rufous chestnut black white|brown|blue-bill white-cheek stiff-tail cocked-tail|diving swimming|water
+558426|71|white black|gray|pink-bill black-wingtips black-grin|flocks flyover grazing|field marsh water
+10286|13|black white|black white|streaked striped-head streaked-breast|trunk|woods
+3893|27|gray brown white|gray|yellow-legs long-legs thin-bill spotted white-rump|wading probing|marsh
+7458|13|brown white|brown|streaked-back curved-bill thin-bill long-tail|trunk|woods yard
+1188207|13|yellow|yellow olive|rufous-streaked streaked-breast red-streaks|shrubs|yard marsh woods
+4246|34|brown|brown|ringed-bill black-ring-bill black-throat short-bill|diving swimming|water marsh
+6937|36|gray rufous green|brown|rufous-head green-eye-patch iridescent white-shoulder-stripe|swimming flocks|marsh water
+6996|58|green black white rufous|gray rufous|crest shaggy-crest red-bill thin-bill green-head|diving swimming|water
+1188213|44|brown buff|brown|curved-bill long-bill striped-head long-legs|probing wading flyover|marsh beach
+558438|48|green white rufous|brown|green-head iridescent flat-bill long-bill yellow-eye rufous-flanks blue-wing|swimming flocks|water marsh
+6933|64|brown gray white|brown|long-neck white-neck-stripe long-tail pointed-tail|swimming flocks|water marsh
+558439|51|gray brown black|brown|black-rump white-wing-patch orange-bill|swimming flocks|water marsh
+473|39|black gray|black|white-bill|swimming diving flocks|water
+7493|11|blue gray white|gray|eyering white-eyering long-tail white-tail-edges|treetops shrubs|woods yard
+793292|15|gray olive yellow|gray|yellow-lores streaked-breast long-bill|ground shrubs|marsh
+7107|47|green purple chestnut iridescent white|brown gray|crest white-face-stripes red-eye red-bill iridescent|swimming trunk|water woods marsh
+17008|18|gray brown white|gray|dark-head black-bill tail-wagging|flycatching wires|yard woods
+7047|46|black white gray green|brown|blue-bill white-face round-head|diving swimming flocks|water
+9135|14|gray brown rufous white|brown|rufous-cap red-cap black-eyestripe gray-breast plain-breast|ground feeder flocks|yard field
+9981|14|brown white buff yellow|brown|streaked-breast streaked yellow-eyebrow short-tail|ground flocks|field marsh
+793289|14|brown orange buff gray|brown|orange-face streaked-breast|ground shrubs|marsh
+5206|43|rufous orange brown white black|brown|barred barred-breast rufous-breast red-shoulder barred-tail checkered-wings|soaring wires|woods marsh
+144537|53|white gray black|white|red-bill thick-bill black-cap crest|flyover diving|water beach
+4209|34|black rufous gray white|gray|red-eye golden-ear-tufts yellow-head-patch white-cheek|diving swimming|water
+4450|31|white gray black|white|black-cap red-bill orange-bill black-tip-bill forked-tail long-tail red-legs|flyover diving hovering|beach water marsh sky
+4840|44|black brown white|black brown|red-bill orange-bill long-bill yellow-eye eyering pink-legs|probing ground|beach marsh
+9152|15|gray rufous buff|gray|pink-bill eyering white-eyering rufous-cap plain-breast|ground shrubs|field
+7004|64|white black green|gray rufous|red-bill thin-bill green-head rufous-head crest|diving swimming|water
+3936|28|brown buff rufous|brown|long-bill short-legs barred-head big-eye|ground night probing|woods field yard
+474210|16|gray rufous brown|gray|rufous-cap red-cap breast-spot central-spot wingbars yellow-bill|ground feeder flocks|field yard
+10322|23|black brown rufous|rufous gray|yellow-eye|ground flocks wading|woods marsh
+4885|46|white black orange rufous|white|curved-bill upturned-bill long-bill long-legs blue-legs orange-head|wading probing flocks|marsh water
+12942|18|blue orange rufous white|gray blue|orange-breast rufous-breast red-breast white-belly|wires flycatching feeder|field yard
+891704|15|olive gray white|olive|gray-cap white-eyestripe black-eyestripe red-eye|treetops|woods yard
+9096|15|rufous gray brown|brown|rufous-cap red-cap rufous-wing gray-face white-throat|shrubs ground|marsh
+199841|15|pink red purple brown|brown white|red-head pink-head streaked-flanks white-eyestripe conical-bill|feeder treetops|woods yard
+4627|61|gray red white|gray|red-throat thin-bill upturned-bill|swimming diving flyover|water
+8010|61|black|black|thick-bill wedge-tail shaggy-throat|soaring flyover|sky woods
+62550|15|olive white black orange|olive|orange-crown spotted-breast streaked-breast eyering white-eyering pink-legs|ground|woods
+906|115|brown bronze iridescent black|brown|red-head blue-head bald-head beard wattle long-legs fan-tail|ground flocks|woods field yard
+11970|14|brown white|brown|brown-throat plain-breast|flycatching flyover|water field sky
+5020|46|green blue gray rufous chestnut|green|chestnut-neck yellow-legs orange-legs crest|wading|marsh water
+16611|15|olive gray white|olive|wingbars white-throat|flycatching shrubs|marsh field
+13270|20|rufous brown white|rufous|spotted-breast black-spots eyering white-eyering rufous-head|ground|woods
+145304|13|brown yellow|brown|streaked streaked-breast yellow-wing thin-bill|feeder flocks treetops|woods yard
+10271|20|black white red pink|brown buff|red-breast pink-breast red-throat black-head conical-bill white-wing-patch|feeder treetops|woods yard
+145233|11|blue gray yellow olive|blue yellow|yellow-throat yellow-breast breast-band wingbars eyering white-eyering olive-back|treetops|woods
+16100|16|olive gray|olive|wingbars|flycatching treetops|woods yard
+16782|22|black gray white|black white|white-tail-band black-head white-belly|flycatching wires|field marsh
+4626|80|black white gray|gray|black-head checkered-back necklace red-eye thick-bill|swimming diving flyover|water
+10227|14|blue|brown|conical-bill|shrubs wires feeder|field yard
+9325|18|black chestnut rufous|yellow olive|black-head black-hood chestnut-breast wingbars|treetops|field yard
+145240|14|black white olive yellow|olive|black-cap white-cheek streaked streaked-breast wingbars yellow-legs|treetops|woods
+73155|17|blue rufous brown|brown rufous|rufous-wingbars wingbars big-bill conical-bill|shrubs wires|field
+145246|14|gray yellow black white|gray yellow|yellow-throat white-eyestripe black-face black-streaks streaked-flanks wingbars|treetops trunk|woods
+4205|31|black gray rufous|gray|red-eye golden-ear-tufts crest|diving swimming|water
+4672|25|gray blue brown buff|brown|streaked-breast barred-tail hooked-bill|flyover diving|sky field marsh
+145235|13|yellow black gray white|yellow olive|streaked-breast black-streaks black-mask white-wing-patch yellow-rump white-tail-band|treetops shrubs|woods
+7057|53|white rufous chestnut black|brown|chestnut-head red-eye long-bill sloped-forehead|diving swimming|water
+144536|35|white gray black|white|black-cap thick-bill black-bill|flyover hovering|marsh field
+11941|12|brown white|brown|breast-band brown-band|flyover flocks flycatching|water field sky
+3873|29|rufous orange gray|gray|long-bill rufous-breast white-rump|probing flocks|marsh
+1965|30|brown white|brown|long-tail white-tail-spots curved-bill yellow-bill rufous-wing|treetops shrubs|woods
+199833|30|brown buff|brown|camouflage cryptic|night ground|woods
+9921|18|red black|yellow olive|black-wing black-tail|treetops|woods
+9528|24|yellow brown black|yellow brown|yellow-breast black-v black-breast-band streaked-back white-tail-edges|ground wires|field
+9176|18|gray brown white black|gray|striped-head black-white-crown white-crown pink-bill orange-bill gray-breast|ground feeder|field yard
+199837|24|brown gray buff|brown|cryptic white-tail-edges|night ground|woods
+6990|46|white black green|gray brown|green-head white-cheek-spot yellow-eye iridescent|diving swimming|water
+10487|18|black white buff|buff brown|buff-nape yellow-nape white-back white-rump striped-head|ground flocks flyover|field
+17402|13|blue gray olive white yellow|olive|gray-head blue-head white-spectacles eyering wingbars|treetops|woods
+243|24|rufous gray brown|rufous|long-bill red-bill barred-flanks gray-cheek|ground probing|marsh
+6917|132|white|gray|black-bill yellow-lores long-neck|swimming flocks flyover|water field
+1578960|33|buff black brown|brown|black-cap buff-wing-patch long-neck|wading|marsh
+144496|27|brown buff|brown|long-bill striped-head barred|probing ground|marsh field
+5200|53|brown white buff black|brown|black-belly-patch white-tail-base feathered-legs|hovering soaring|field marsh
+144539|46|white gray black|white|orange-bill crest shaggy-crest black-cap|flyover diving|beach water
+793286|13|orange buff gray|orange|orange-face gray-nape streaked-flanks|shrubs ground|marsh
+3865|22|brown white|brown|streaked-breast breast-band yellow-legs|probing|marsh field
+145229|13|yellow olive black|yellow olive|black-hood black-head yellow-face white-tail-edges|shrubs|woods
+7120|76|black white|black white|red-face wattle iridescent|ground swimming|water yard
+7294|18|brown white black yellow|brown|yellow-throat black-mask black-breast-band horns|ground flocks|field beach
+199914|8|green white purple|green buff|streaked-throat purple-throat|hovering feeder|yard
+145249|12|yellow olive black|yellow olive|black-streaks streaked-flanks yellow-breast tail-wagging face-pattern|shrubs|field woods
+7054|42|black gray white|brown|blue-bill peaked-head purple-head|diving swimming flocks|water
+4665|23|rufous blue gray white black|rufous brown|black-face-stripes spotted barred-back rufous-back rufous-tail hooked-bill|hovering wires flyover|field yard
+7056|48|gray rufous chestnut black|brown|red-head rufous-head round-head blue-bill yellow-eye|diving swimming|water
+558434|41|rufous chestnut cinnamon|brown|red-eye blue-wing|swimming|water marsh
+3875|22|brown white olive|brown|eyering white-eyering spotted dark-rump|wading|water woods
+145258|12|olive yellow black white|olive yellow|yellow-face black-throat black-streaks wingbars|treetops|woods
+4224|47|gray rufous white black|gray|rufous-neck white-cheek yellow-bill|diving swimming|water
+72912|13|buff olive black|buff olive|striped-head black-head-stripes|shrubs ground|woods
+18204|23|red white black|red white|red-head white-belly white-wing-patch black-back|trunk flycatching|woods yard
+199916|13|blue black white|olive brown|black-face black-throat white-wing-spot|shrubs treetops|woods
+12878|18|olive brown buff|olive brown|spotted-breast eyering buff-eyering spectacles|ground treetops|woods
+145239|13|yellow white chestnut black|yellow white|yellow-crown chestnut-flanks rufous-flanks black-mask wingbars|shrubs|woods
+12901|18|rufous brown buff white|rufous|faint-spots spotted-breast|ground|woods
+411086|51|white buff orange|white|yellow-bill short-neck buff-head|ground flocks|field yard
+145231|13|yellow olive chestnut black|olive yellow|chestnut-cheek streaked-breast black-streaks yellow-rump white-wing-patch|treetops|woods yard
+979753|12|gray olive yellow|gray olive|gray-head eyering white-eyering yellow-throat yellow-breast|shrubs|woods
+5227|39|brown white rufous black|brown|white-tail-band barred-breast rufous-breast|soaring flocks flyover|woods sky
+1280|25|brown rufous white black|brown buff|white-throat white-eyestripe barred spotted|ground|field
+3759|58|brown purple green red|brown|curved-bill red-eye red-legs white-face|wading probing flocks|marsh
+16791|22|gray yellow white|gray yellow|yellow-belly gray-head black-tail white-tail-edges|flycatching wires|field
+10729|13|yellow orange blue gray|yellow|yellow-head blue-wing plain-breast|trunk shrubs|woods water
+4381|53|white gray black|brown|dark-back yellow-legs yellow-bill|flyover swimming|beach water
+6363|9|rufous orange white|green rufous|orange-throat red-throat rufous-back iridescent|hovering feeder|yard
+17394|14|gray olive white|gray|white-eyestripe plain|treetops|woods
+4270|90|black white|brown|white-throat white-flank-patch hooked-bill long-neck|swimming diving|water
+19577|24|gray brown white|brown|white-wing-bar white-throat long-wings pointed-wings|flyover night flycatching|sky field
+1960|30|brown white|brown|long-tail red-eyering black-bill curved-bill|treetops shrubs|woods
+13732|16|brown buff gray|brown|streaked-breast tail-wagging white-tail-edges thin-bill|ground flocks|field beach
+979756|12|olive gray white|olive|gray-head white-eyestripe|treetops|woods
+73149|15|brown buff white|brown|streaked-breast eyestripe buff-eyestripe tail-wagging|ground wading|woods water
+10243|19|yellow olive white|yellow olive|yellow-breast yellow-throat spectacles white-eyering thick-bill long-tail|shrubs|field
+4798|18|buff white black orange|buff|black-breast-band orange-legs orange-bill short-bill|ground beach|beach
+558433|39|gray brown blue|brown|white-face-crescent blue-wing|swimming|marsh water
+19765|22|gray rufous brown|gray rufous|ear-tufts yellow-eye streaked barred|night trunk|woods yard
+9915|18|red|yellow orange|pale-bill|treetops flycatching|woods
+17365|14|yellow olive gray white|yellow olive|yellow-throat yellow-spectacles wingbars|treetops|woods
+979757|13|olive yellow gray|olive|faint-streaks plain|shrubs|woods yard
+16602|13|olive gray white|olive|eyering white-eyering wingbars|flycatching|woods
+162|22|gray brown black yellow|gray brown|yellow-bill black-face short-bill|ground wading|marsh
+10139|13|buff brown orange|buff|flat-head orange-lores plain-breast|ground|field
+145236|14|chestnut black buff|olive gray|chestnut-throat chestnut-flanks chestnut-cap black-face buff-neck wingbars|treetops|woods
+145275|13|gray yellow black|gray yellow|black-necklace necklace yellow-spectacles eyering|shrubs|woods
+17364|13|olive yellow gray|olive yellow|yellow-throat dark-eyestripe|treetops|woods
+145276|12|yellow olive black|yellow olive|black-cap yellow-face|shrubs flycatching|woods
+16638|15|olive white|olive|eyering wingbars|flycatching|woods water
+10224|14|blue red green|green|blue-head red-breast green-back red-eyering|shrubs feeder|yard field
+12883|18|olive gray|olive gray|spotted-breast gray-face|ground|woods
+145237|13|orange black white|yellow olive|orange-throat orange-face black-back white-wing-patch|treetops|woods
+11858|14|blue rufous buff white|blue rufous|buff-rump orange-rump rufous-throat white-forehead square-tail|flyover flocks flycatching|water field sky
+1650411|20|yellow brown black white|gray yellow|yellow-eyebrow big-bill conical-bill yellow-bill white-wing-patch|feeder flocks|woods yard
+145224|13|olive yellow gray black|olive yellow|gray-hood black-bib|shrubs ground|woods
+367562|35|green black blue|green|black-head long-tail red-legs|flocks flyover feeder|yard
+1286843|11|brown buff|brown|streaked-cap streaked-back cocked-tail|shrubs|marsh field
+20315|38|buff brown white|buff brown|streaked-breast yellow-eye short-ear-tufts|hovering flyover|marsh field
+5074|76|brown gold|brown|golden-nape hooked-bill feathered-legs|soaring|sky field
+5034|71|brown buff|brown|streaked streaked-breast black-neck-stripe long-neck yellow-bill|wading|marsh
+73553|12|yellow blue gray|yellow|black-eyestripe white-wingbars wingbars blue-wing|shrubs|field woods
+73148|15|brown white buff|brown|streaked-breast white-eyestripe tail-wagging pink-legs|ground wading|woods water
+17855|42|black white red|black white|crest red-crest white-face-stripes white-neck-stripe|trunk|woods
+117059|17|white black brown|white brown|white-wing-patch black-back|ground flocks|beach field
+1578502|40|white buff gray|white buff|heart-face white-face dark-eye|night flyover|field marsh
+9092|14|gray buff brown|gray buff|buff-breast streaked-breast gray-face|ground shrubs|field woods
+145225|13|yellow olive black|yellow olive|yellow-spectacles black-mask|ground shrubs|woods
+3845|27|rufous orange gray white|gray|rufous-breast orange-breast short-bill|probing flocks|beach
+10411|16|red brick brown|olive yellow|crossed-bill dark-wing|treetops flocks|woods
+144594|58|white black|white black|yellow-eye round-head barred spotted|ground hovering|beach field marsh
+10431|15|gray olive yellow|olive yellow|gray-hood eyering white-eyering|ground shrubs|woods
+3856|21|gray brown white|gray|orange-legs yellow-legs orange-bill|probing flocks|beach
+10676|16|yellow brown black gray rufous|buff brown|black-bib yellow-breast rufous-shoulder thick-bill|ground shrubs|field
+10423|16|pink red black white|olive yellow|crossed-bill white-wingbars wingbars|treetops flocks|woods
+1428|55|gray black white blue|gray|spotted blue-head bald-head|ground flocks|yard field
+4631|100|black white|black white|forked-tail long-tail hooked-bill red-throat|soaring|sky beach
+19339|18|green yellow blue|green yellow|barred-head long-tail|flocks feeder|yard
+559070|24|gray black white|gray|black-mask hooked-bill white-wing-patch|wires shrubs|field
+508048|117|gray rufous|gray|red-crown red-cap long-neck long-legs|ground flocks flyover|field marsh
+16603|14|olive yellow|olive yellow|yellow-throat eyering wingbars|flycatching|woods
+10470|24|black yellow white|brown yellow|yellow-head white-wing-patch|flocks ground|marsh
+9182|19|brown black gray|brown|black-face black-bib pink-bill|ground feeder|field
+7014|90|brown gray white|brown|black-bill bill-knob long-neck|swimming ground|water yard
+145254|13|gray black white|gray black|black-throat black-head yellow-lores wingbars|treetops|woods
+145232|12|blue white black|blue green|breast-band wingbars streaked-flanks|treetops|woods
+3866|19|gray brown white|gray|white-rump streaked-breast|probing flocks|beach marsh
+339596|21|buff|buff|plain-breast yellow-legs short-bill|ground|field beach
+12024|23|gray black white|gray|black-mask hooked-bill white-wing-patch|wires shrubs|field
+3851|19|buff brown|buff|scaly-back long-wings black-legs|probing|beach field
+981|60|bronze iridescent rufous green red|brown buff|red-face green-head white-neck-ring long-tail|ground|field
+3855|17|gray rufous white|gray|black-legs drooping-bill|probing flocks|beach marsh
+367715|38|rufous orange brown gray|rufous|long-bill barred-flanks rufous-breast|ground probing|marsh
+558441|48|gray rufous chestnut buff|brown|rufous-head buff-crown|swimming flocks|water marsh
+4893|26|black gold brown white|brown gold|black-face black-breast white-neck-stripe spotted|ground flocks|field
+3850|22|brown gray rufous|gray|barred-breast rufous-cheek long-legs drooping-bill|wading probing|marsh
+4836|36|black white|black white|pink-legs red-legs long-legs thin-bill|wading|marsh water
+144497|23|gray rufous chestnut white|gray|neck-stripe thin-bill|swimming wading|marsh water
+144502|34|white gray black|white|black-head black-bill white-wing-edge|flyover flocks|water beach
+7018|82|gray brown|gray|orange-bill pink-legs|swimming ground flocks|water field
+10168|16|brown gray white|brown|white-tail-edges eyering white-eyering streaked-breast|ground|field
+3950|39|chestnut rufous black|gray|upturned-bill long-bill white-rump|probing wading|marsh
+6893|51|chestnut rufous gray black|chestnut|red-bill pink-bill long-legs white-wing-patch|swimming ground flocks|water marsh
+3962|30|brown buff|brown|small-head long-neck streaked big-eye|ground wires|field
+5416|36|gray black white|gray|gray-head pointed-wings red-eye|soaring flycatching|sky
+10479|17|brown white rufous black|brown|chestnut-face striped-head breast-spot white-tail-edges|ground|field
+4512|25|black gray|gray white|black-head black-belly|flyover hovering flocks|marsh water
+846|35|gray buff rufous|gray|black-necklace barred-flanks red-bill red-legs|ground|field yard
+9148|14|brown gray buff|brown|gray-nape brown-cheek-patch plain-breast|ground|field
+1579016|56|gray white black|brown|white-eyestripe red-eye barred-breast hooked-bill|flyover|woods
+9919|18|yellow red black|yellow olive|red-head wingbars black-back|treetops|woods
+144479|34|black gray brown|black|red-bill red-face-shield yellow-bill-tip white-flank-stripe|swimming wading|marsh water
+12899|17|olive brown gray|olive|spotted-breast|ground|woods
+4334|157|white black|white|orange-bill pouch black-wingtips|swimming flocks soaring|water
+6914|120|black|black|red-bill long-neck|swimming|water
+144510|39|white gray brown|white|brown-hood red-bill red-legs|flyover flocks swimming|water beach
+20307|38|brown buff rufous|brown|long-ear-tufts ear-tufts orange-face streaked-breast|night|woods
+16620|15|olive gray white|olive|wingbars eyering|flycatching shrubs|marsh field
+4349|69|white|white|pink-bill pink-legs|flyover swimming|beach water
+16110|19|olive gray white|olive|dark-vest white-belly-stripe|flycatching treetops|woods
+72486|68|buff brown rufous|buff brown|brown-eye-patch pink-bill long-legs|ground swimming|water field

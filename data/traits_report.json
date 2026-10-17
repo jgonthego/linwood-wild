@@ -1,0 +1,543 @@
+{
+ "size_mismatch": [
+  [
+   "Boat-tailed Grackle",
+   42.0,
+   16.5
+  ],
+  [
+   "Northern Yellow Warbler",
+   13.0,
+   18.0
+  ],
+  [
+   "Royal Tern",
+   46.0,
+   130.0
+  ],
+  [
+   "Western Cattle-Egret",
+   51.0,
+   92.0
+  ],
+  [
+   "Loggerhead Shrike",
+   23.0,
+   9.8
+  ]
+ ],
+ "color_not_in_wiki": [
+  [
+   "Blue Jay",
+   [
+    "gray"
+   ]
+  ],
+  [
+   "Clapper Rail",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Northern Flicker",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Red-breasted Nuthatch",
+   [
+    "gray",
+    "rufous"
+   ]
+  ],
+  [
+   "Boat-tailed Grackle",
+   [
+    "blue"
+   ]
+  ],
+  [
+   "Great Crested Flycatcher",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Barn Swallow",
+   [
+    "orange",
+    "buff"
+   ]
+  ],
+  [
+   "Red-tailed Hawk",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Northern Harrier",
+   [
+    "white"
+   ]
+  ],
+  [
+   "Hermit Thrush",
+   [
+    "rufous",
+    "buff"
+   ]
+  ],
+  [
+   "Killdeer",
+   [
+    "orange"
+   ]
+  ],
+  [
+   "Cedar Waxwing",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Marsh Wren",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Short-billed Dowitcher",
+   [
+    "rufous",
+    "orange"
+   ]
+  ],
+  [
+   "Little Blue Heron",
+   [
+    "gray"
+   ]
+  ],
+  [
+   "Palm Warbler",
+   [
+    "brown",
+    "yellow",
+    "olive",
+    "rufous"
+   ]
+  ],
+  [
+   "American Wigeon",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Fox Sparrow",
+   [
+    "rufous",
+    "brown"
+   ]
+  ],
+  [
+   "Sanderling",
+   [
+    "gray"
+   ]
+  ],
+  [
+   "Tricolored Heron",
+   [
+    "purple"
+   ]
+  ],
+  [
+   "Ruddy Turnstone",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Hudsonian Whimbrel",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "American Coot",
+   [
+    "black"
+   ]
+  ],
+  [
+   "Seaside Sparrow",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Wood Duck",
+   [
+    "purple",
+    "chestnut"
+   ]
+  ],
+  [
+   "Chipping Sparrow",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Savannah Sparrow",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Saltmarsh Sparrow",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Red-shouldered Hawk",
+   [
+    "rufous",
+    "orange",
+    "black"
+   ]
+  ],
+  [
+   "American Oystercatcher",
+   [
+    "brown"
+   ]
+  ],
+  [
+   "American Avocet",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Eastern Bluebird",
+   [
+    "rufous",
+    "white"
+   ]
+  ],
+  [
+   "Purple Finch",
+   [
+    "pink"
+   ]
+  ],
+  [
+   "Northern Parula",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Blackpoll Warbler",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Blue Grosbeak",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Long-billed Dowitcher",
+   [
+    "orange"
+   ]
+  ],
+  [
+   "Eastern Whip-poor-will",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Common Goldeneye",
+   [
+    "black"
+   ]
+  ],
+  [
+   "Bobolink",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Blue-headed Vireo",
+   [
+    "white"
+   ]
+  ],
+  [
+   "Least Bittern",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Wilson's Snipe",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Rough-legged Hawk",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Nelson's Sparrow",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Calliope Hummingbird",
+   [
+    "purple"
+   ]
+  ],
+  [
+   "Redhead",
+   [
+    "rufous",
+    "chestnut"
+   ]
+  ],
+  [
+   "Cinnamon Teal",
+   [
+    "chestnut"
+   ]
+  ],
+  [
+   "Solitary Sandpiper",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Worm-eating Warbler",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Swainson's Thrush",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Veery",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Cape May Warbler",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "White-faced Ibis",
+   [
+    "brown",
+    "purple",
+    "green"
+   ]
+  ],
+  [
+   "Common Nighthawk",
+   [
+    "gray",
+    "brown"
+   ]
+  ],
+  [
+   "Piping Plover",
+   [
+    "buff",
+    "white"
+   ]
+  ],
+  [
+   "Grasshopper Sparrow",
+   [
+    "buff",
+    "orange"
+   ]
+  ],
+  [
+   "Bay-breasted Warbler",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Canada Warbler",
+   [
+    "black"
+   ]
+  ],
+  [
+   "Wilson's Warbler",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Cliff Swallow",
+   [
+    "blue",
+    "rufous"
+   ]
+  ],
+  [
+   "Short-eared Owl",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Purple Sandpiper",
+   [
+    "brown"
+   ]
+  ],
+  [
+   "Dickcissel",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Sandhill Crane",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Yellow-bellied Flycatcher",
+   [
+    "olive"
+   ]
+  ],
+  [
+   "Baird's Sandpiper",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Western Sandpiper",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "King Rail",
+   [
+    "orange",
+    "gray"
+   ]
+  ],
+  [
+   "Eurasian Wigeon",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Stilt Sandpiper",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Wilson's Phalarope",
+   [
+    "rufous",
+    "chestnut"
+   ]
+  ],
+  [
+   "Vesper Sparrow",
+   [
+    "gray"
+   ]
+  ],
+  [
+   "Upland Sandpiper",
+   [
+    "buff"
+   ]
+  ],
+  [
+   "Mississippi Kite",
+   [
+    "black",
+    "white"
+   ]
+  ],
+  [
+   "Lark Sparrow",
+   [
+    "black"
+   ]
+  ],
+  [
+   "American Goshawk",
+   [
+    "black"
+   ]
+  ],
+  [
+   "Long-eared Owl",
+   [
+    "rufous"
+   ]
+  ],
+  [
+   "Alder Flycatcher",
+   [
+    "gray"
+   ]
+  ],
+  [
+   "Glaucous Gull",
+   [
+    "white"
+   ]
+  ],
+  [
+   "Egyptian Goose",
+   [
+    "buff",
+    "brown",
+    "rufous"
+   ]
+  ]
+ ],
+ "wiki_only": [],
+ "no_wiki": []
+}

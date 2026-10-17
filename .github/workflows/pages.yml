@@ -32,6 +32,14 @@ jobs:
           if [ -z "$HOME_LAT" ]; then echo "HOME_LAT secret missing; keeping committed data"; exit 0; fi
           python scripts/fetch_possible.py || git checkout -- data/species.json
           python scripts/fetch_sounds.py || git checkout -- data/sounds.json audio
+      - name: Galleries + Wikipedia text + bird traits for any new species (incremental; keeps committed data on failure)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        timeout-minutes: 40
+        run: |
+          # committed data/gallery.json, data/wiki_desc.json and data/traits_curated.txt persist; only species new this month are fetched
+          python scripts/fetch_gallery.py --budget 1500 || git checkout -- data/gallery.json
+          python scripts/fetch_wiki.py || git checkout -- data/wiki_desc.json
+          python scripts/build_traits.py || git checkout -- data/traits.json
       - name: Build
         run: python build.py
       - uses: actions/upload-pages-artifact@v3
