@@ -36,13 +36,13 @@
 <main>
   <section id="now" class="sec">
     <h2 class="t"><span class="tag">Right now</span>What's Out There in <em id="nowMonth">{{MONTH}}</em></h2>
-    <p class="sub">Likely &amp; possible birds ranked by how often they turn up nearby in <span class="nowm">{{MONTH}}</span> — share of all bird records within 8 km that month (mostly eBird checklists).</p>
+    <p class="sub" id="nowSub">Likely &amp; possible birds ranked by how often they turn up nearby in <span class="nowm">{{MONTH}}</span> — share of all bird records within 8 km that month (mostly eBird checklists).</p>
     <ol id="nowList" class="nowlist"></ol>
   </section>
 
   <section id="describe" class="sec">
     <h2 class="t"><span class="tag">What was that?!</span>Describe-a-Bird</h2>
-    <p class="sub">Type what you saw — colors, size, markings, what it was doing — or tap traits. Matches come from a trait table for all {{BIRDS}} birds on the list, ranked toward birds that are <b class="lk">likely</b> here in <span class="nowm">{{MONTH}}</span>. Works offline once loaded. Tap a photo for male / female shots.</p>
+    <p class="sub">Type what you saw — colors, size, markings, what it was doing — or tap traits. Matches come from a trait table for all {{BIRDS}} birds on the list, ranked toward birds that are <b class="lk">likely</b> here this month (<span class="curm">{{MONTH}}</span>, always the current month). Works offline once loaded. Tap a photo for male / female shots.</p>
     <div id="describeBox" class="describe"></div>
   </section>
 
@@ -54,7 +54,7 @@
 
   <section id="quiz" class="sec">
     <h2 class="t"><span class="tag">Ear training</span>Name That Bird</h2>
-    <p class="sub">Hit play, listen, pick the bird. Every sound is a real, openly licensed iNaturalist recording of a bird that's <b>likely</b> here in <span class="nowm">{{MONTH}}</span>.</p>
+    <p class="sub">Hit play, listen, pick the bird. Every sound is a real, openly licensed iNaturalist recording of a bird that's <b>likely</b> here in <span id="quizPeriod">{{MONTH}}</span> (follows the month picker above).</p>
     <div id="quizBox" class="quiz"></div>
   </section>
 

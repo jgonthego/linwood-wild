@@ -77,35 +77,70 @@ function renderHero(birds){
     f.innerHTML='<a href="'+turl(s)+'" data-gal="'+s.id+'"><img src="'+esc(s.ph.url)+'" alt="'+esc(name(s))+'"></a><figcaption><b>'+esc(name(s))+'</b><span>'+esc(s.ph.attr)+' · '+esc(s.ph.license)+'</span></figcaption>';
     box.appendChild(f);});
 }
+/* ---- period picker for "What's Out There in [month ▾]" (+ quiz) ---- */
+var PKEY="lw-now-period";
+var SEASONS={spring:{l:"Spring",r:"Mar–May",m:[2,3,4]},summer:{l:"Summer",r:"Jun–Aug",m:[5,6,7]},fall:{l:"Fall",r:"Sep–Nov",m:[8,9,10]},winter:{l:"Winter",r:"Dec–Feb",m:[11,0,1]}};
+function period(k){
+  if(/^m([0-9]|1[01])$/.test(k)){var i=+k.slice(1);return {k:k,m:[i],l:MONL[i],avg:false,isNow:i===CUR};}
+  if(SEASONS[k])return {k:k,m:SEASONS[k].m,l:SEASONS[k].l,r:SEASONS[k].r,avg:true,isNow:false};
+  if(k==="all")return {k:k,m:[0,1,2,3,4,5,6,7,8,9,10,11],l:"All year",r:"Jan–Dec",avg:true,isNow:false};
+  return {k:"cur",m:[CUR],l:MONL[CUR],avg:false,isNow:true};
+}
+function pval(s,P){var t=0;P.m.forEach(function(i){t+=s.m[i]||0;});return Math.round(10*t/P.m.length)/10;}
+function loadPeriod(){var k="cur";try{k=localStorage.getItem(PKEY)||"cur";}catch(e){}return period(k);}
+var PER=null,LISTENERS=[];
+function setPeriod(k){PER=period(k);try{if(PER.k==="cur")localStorage.removeItem(PKEY);else localStorage.setItem(PKEY,PER.k);}catch(e){}LISTENERS.forEach(function(f){f(PER);});}
+function buildPicker(){
+  var em=document.getElementById("nowMonth"),wrap=el("span","psel");
+  var h='<select id="nowSel" aria-label="Show birds for: month, season or all year">'+
+    '<optgroup label="This month"><option value="cur">'+MONL[CUR]+' (this month)</option></optgroup><optgroup label="Months">'+
+    MONL.map(function(m,i){return '<option value="m'+i+'">'+m+(i===CUR?" •":"")+'</option>';}).join("")+'</optgroup><optgroup label="Seasons">'+
+    Object.keys(SEASONS).map(function(k){return '<option value="'+k+'">'+SEASONS[k].l+' ('+SEASONS[k].r+')</option>';}).join("")+
+    '</optgroup><optgroup label="Whole year"><option value="all">All year</option></optgroup></select><span class="pshow" aria-hidden="true"></span><span class="pcar" aria-hidden="true">\u25BE</span>';
+  wrap.innerHTML=h;em.textContent="";em.appendChild(wrap);
+  var sel=wrap.querySelector("select"),show=wrap.querySelector(".pshow");
+  var reset=el("button","pnow","\u21BA Back to now");reset.type="button";reset.setAttribute("aria-label","Back to now: show "+MONL[CUR]);
+  document.querySelector("#now .t").after(reset);
+  reset.onclick=function(){setPeriod("cur");sel.focus();};
+  sel.addEventListener("change",function(){setPeriod(sel.value);});
+  LISTENERS.push(function(P){sel.value=P.k;show.textContent=P.l;reset.hidden=P.isNow;});
+}
 function renderNow(birds){
-  var m=CUR;
-  document.getElementById("nowMonth").textContent=MONL[m];
-  Array.prototype.forEach.call(document.querySelectorAll(".nowm"),function(e){e.textContent=MONL[m];});
-  var list=birds.filter(function(s){return s.m[m]>0&&s.lik!=="rare";}).sort(function(a,b){return b.m[m]-a.m[m];});
-  var ol=document.getElementById("nowList"),shown=0;
+  var ol=document.getElementById("nowList"),sub=document.getElementById("nowSub"),btn=null,list=[],shown=0,P;
   function more(k){
     list.slice(shown,shown+k).forEach(function(s,i){
-      var li=el("li");
+      var li=el("li"),v=pval(s,P);
       li.innerHTML='<span class="rk">'+(shown+i+1)+'</span>'+(s.ph?'<button type="button" class="nowph" data-gal="'+s.id+'" aria-label="Photos of '+esc(name(s))+'"><img loading="lazy" src="'+esc(s.ph.sq||s.ph.url)+'" alt="'+esc(name(s))+'" title="Photo: '+esc(s.ph.attr)+' ('+esc(s.ph.license)+')"></button>':'<div class="noimg">?</div>')+
-        '<div><div class="nm"><a href="'+turl(s)+'" target="_blank" rel="noopener">'+esc(name(s))+'</a></div><div class="sc">'+esc(s.sci)+'</div><div class="ct"><span class="tx-'+s.lik+'">'+LIK[s.lik]+'</span> · '+s.m[m]+' per 10k</div></div>'+(s.snd?playBtn(s):"");
+        '<div><div class="nm"><a href="'+turl(s)+'" target="_blank" rel="noopener">'+esc(name(s))+'</a></div><div class="sc">'+esc(s.sci)+'</div><div class="ct"><span class="tx-'+s.lik+'">'+LIK[s.lik]+'</span> · '+(P.avg?'avg '+v+' per 10k':v+' per 10k')+'</div></div>'+(s.snd?playBtn(s):"");
       ol.appendChild(li);});
     shown+=k;
-    if(shown>=list.length&&btn)btn.remove();
+    if(btn){if(shown>=list.length)btn.style.display="none";else btn.textContent="Show more "+P.l+" birds ("+(list.length-shown)+" more of "+list.length+")";}
   }
-  var btn=el("button","more","Show more "+MONL[m]+" birds ("+list.length+" total)");
-  btn.type="button";btn.onclick=function(){more(24);};
-  ol.after(btn);more(12);
+  function draw(p){
+    P=p;stopAud();
+    list=birds.filter(function(s){return s.lik!=="rare"&&pval(s,P)>0;}).sort(function(a,b){return pval(b,P)-pval(a,P)||LIKO[a.lik]-LIKO[b.lik];});
+    ol.innerHTML="";shown=0;
+    if(!btn){btn=el("button","more");btn.type="button";btn.onclick=function(){more(24);};ol.after(btn);}
+    btn.style.display="";
+    sub.innerHTML=P.avg?'Likely &amp; possible birds ranked by how often they turn up nearby in <b>'+esc(P.l)+'</b> ('+esc(P.r)+') — the <b>average</b> of each month’s share of all bird records within 8 km (mostly eBird checklists), per 10,000 records.':
+      'Likely &amp; possible birds ranked by how often they turn up nearby in <span class="nowm">'+esc(P.l)+'</span> — share of all bird records within 8 km that month (mostly eBird checklists), per 10,000 records.';
+    if(!list.length)ol.innerHTML='<li class="empty">No likely or possible birds recorded for this period.</li>';
+    more(12);
+  }
+  LISTENERS.push(draw);
 }
 function renderQuiz(birds){
-  var box=document.getElementById("quizBox");
-  var pool=birds.filter(function(s){return s.lik==="likely"&&s.m[CUR]>0;});
+  var box=document.getElementById("quizBox"),lab=document.getElementById("quizPeriod");
+  LISTENERS.push(function(P){stopAud();lab.textContent=P.avg?P.l+" ("+P.r+")":P.l;build(P);});
+  function build(P){
+  var pool=birds.filter(function(s){return s.lik==="likely"&&pval(s,P)>0;});
   var withSnd=pool.filter(function(s){return s.snd;});
-  if(withSnd.length<4||pool.length<4){box.innerHTML='<p class="empty">Not enough recordings for this month yet.</p>';return;}
+  if(withSnd.length<4||pool.length<4){box.innerHTML='<p class="empty">Not enough recordings for this period yet.</p>';return;}
   var score=0,tries=0,streak=0,last=null;
   box.innerHTML='<div class="qtop"><button type="button" class="play qplay" aria-label="Play mystery bird">\u25B6</button>'+
     '<div class="qscore"><span>Score</span><b class="qs">0 / 0</b></div><div class="qscore"><span>Streak</span><b class="qk">0</b></div></div>'+
     '<div class="qopts"></div><div class="qres" aria-live="polite"></div><button type="button" class="more qnext">Next bird →</button>'+
-    '<p class="sinfo">'+withSnd.length+' likely '+MONL[CUR]+' birds are in the quiz. Credits appear after you answer.</p>';
+    '<p class="sinfo">'+withSnd.length+' likely '+esc(P.l)+' birds are in the quiz. Credits appear after you answer.</p>';
   var qb=box.querySelector(".qplay"),opts=box.querySelector(".qopts"),res=box.querySelector(".qres"),nx=box.querySelector(".qnext");
   function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
   function round(){
@@ -130,6 +165,7 @@ function renderQuiz(birds){
       opts.appendChild(b);});
   }
   nx.onclick=round;round();
+  }
 }
 function renderGangs(birds){
   var g=document.getElementById("gangGrid");
@@ -211,7 +247,7 @@ fetch("data/species.json").then(function(r){if(!r.ok)throw new Error(r.status);r
   var birds=by.birds||[];
   window.LW={species:d.species,birds:birds,esc:esc,name:name,turl:turl,el:el,fmt:fmt,CUR:CUR,MON:MON,MONL:MONL,LIK:LIK,playBtn:playBtn};
   document.dispatchEvent(new Event("lw-data"));
-  renderHero(birds);renderNow(birds);renderQuiz(birds);renderGangs(birds);renderGhosts(birds);
+  renderHero(birds);buildPicker();renderNow(birds);renderQuiz(birds);setPeriod(loadPeriod().k);renderGangs(birds);renderGhosts(birds);
   Array.prototype.forEach.call(document.querySelectorAll(".grp"),function(sec){
     var g=sec.getAttribute("data-g"),items=by[g]||[];
     var c={likely:0,possible:0,rare:0};items.forEach(function(s){c[s.lik]++;});
