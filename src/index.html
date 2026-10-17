@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LINWOOD WILD — South Jersey Shore Wildlife</title>
+<meta name="description" content="Every research-grade wildlife species logged on iNaturalist around Linwood and the South Jersey shore: birds, mammals, reptiles, amphibians, insects and spiders, with seasonality.">
+<meta name="theme-color" content="#0b0d0c">
+<link rel="preload" href="assets/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v={{VER}}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦅</text></svg>">
+</head>
+<body>
+<header class="hero">
+  <nav class="topnav" aria-label="Sections">
+    <a href="#now">Now</a><a href="#quiz">Quiz</a><a href="#gangs">Gangs</a><a href="#ghosts">Ghosts</a><a href="#birds">Birds</a><a href="#mammals">Fur</a><a href="#herps">Scales</a><a href="#insects">Bugs</a><a href="#crawlies">Bite</a>
+  </nav>
+  <div class="hero-in">
+    <div id="heroPics" class="heropics" aria-label="Most-logged birds around here"></div>
+    <p class="kicker">South Jersey shore · back-bay marsh · pine barrens edge</p>
+    <h1>LINWOOD<br><span>WILD</span></h1>
+    <p class="lede">Every creature with a <b>research-grade</b> iNaturalist record within ~{{RADIUS}} km of Linwood — from the marsh to the boardwalk. Real sightings. Zero made-up stuff.</p>
+    <div class="stats">
+      <div><b>{{TOTAL}}</b><span>species</span></div>
+      <div><b>{{BIRDS}}</b><span>birds</span></div>
+      <div><b>{{OBS}}</b><span>observations</span></div>
+    </div>
+    <p class="towns">Turf: {{TOWNS}}</p>
+  </div>
+</header>
+
+<main>
+  <section id="now" class="sec">
+    <h2 class="t"><span class="tag">Right now</span>What's Out There in <em id="nowMonth">{{MONTH}}</em></h2>
+    <p class="sub">Birds ranked by how often they've been logged in <span class="nowm">{{MONTH}}</span> (all years). The higher the number, the better your odds.</p>
+    <ol id="nowList" class="nowlist"></ol>
+  </section>
+
+  <section id="quiz" class="sec">
+    <h2 class="t"><span class="tag">Ear training</span>Name That Bird</h2>
+    <p class="sub">Hit play, listen, pick the bird. Every sound is a real, openly licensed recording from iNaturalist of a bird that shows up here in <span class="nowm">{{MONTH}}</span>.</p>
+    <div id="quizBox" class="quiz"></div>
+  </section>
+
+  <section id="gangs" class="sec">
+    <h2 class="t"><span class="tag">Bird gangs</span>Pick Your Crew</h2>
+    <p class="sub">Every bird species sorted by where it hangs out (grouped by taxonomic order).</p>
+    <div id="gangGrid" class="gangs"></div>
+  </section>
+
+  <section id="ghosts" class="sec">
+    <h2 class="t"><span class="tag">Rare as hell</span>Ghost Sightings</h2>
+    <p class="sub">Bird species with only one or two research-grade records in the area. Blink and you missed 'em.</p>
+    <div id="ghostList" class="ghosts"></div>
+  </section>
+
+  <section id="birds" class="sec grp" data-g="birds">
+    <h2 class="t"><span class="tag">Full roster</span>The Flock: All Birds</h2>
+  </section>
+  <section id="mammals" class="sec grp" data-g="mammals">
+    <h2 class="t"><span class="tag">Mammals</span>Fur &amp; Fangs</h2>
+  </section>
+  <section id="herps" class="sec grp" data-g="herps">
+    <h2 class="t"><span class="tag">Reptiles &amp; amphibians</span>Cold-Blooded Crew</h2>
+  </section>
+  <section id="insects" class="sec grp" data-g="insects">
+    <h2 class="t"><span class="tag">Insects</span>The Six-Legged Swarm</h2>
+  </section>
+  <section id="crawlies" class="sec grp" data-g="crawlies">
+    <h2 class="t"><span class="tag">Spiders, ticks, centipedes &amp; pill bugs</span>Things That Bite</h2>
+  </section>
+</main>
+
+<footer class="foot">
+  <p><b>Data:</b> <a href="https://www.inaturalist.org/" rel="noopener">iNaturalist</a> API v1, research-grade observations only, ~{{RADIUS}} km around Linwood, NJ. Pulled <b>{{DATE}}</b>. Counts = number of research-grade observations (all years); month bars = observations per calendar month.</p>
+  <p><b>Photos:</b> from iNaturalist, shown only when licensed CC0, CC BY, CC BY-SA or CC BY-NC; each card shows its photographer credit and license. Species with no open-licensed photo show a placeholder.</p>
+  <p><b>Sounds:</b> {{SOUNDS}} bird species have a recording — one clip each from a research-grade iNaturalist observation with a CC0, CC BY, CC BY-SA or CC BY-NC sound license, preferring recordings made in this area, then New Jersey, then the eastern US. Clips are trimmed to at most 15 seconds and re-encoded as mono MP3; the recordist, license and source observation are shown with every player. "Song"/"Call" labels appear only when the recordist noted it. xeno-canto was not used (its API requires an account key).</p>
+  <p><b>Fun facts:</b> first lines of the species' Wikipedia article, as provided through the iNaturalist API (Wikipedia text is <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>).</p>
+  <p class="small">Not a field guide or checklist authority — just what people have photographed and the iNat community has confirmed. Fonts: Anton &amp; Space Grotesk (SIL OFL).</p>
+</footer>
+<script>window.WILD_MONTH_BUILD={{MONTHIDX}};</script>
+<script src="assets/app.js?v={{VER}}" defer></script>
+</body>
+</html>
