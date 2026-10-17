@@ -6,9 +6,10 @@ xeno-canto API v3 requires an account key, so it is not used.
 Clips are trimmed to <=15 s, mono, 48 kbps MP3 with ffmpeg into audio/, metadata in data/sounds.json."""
 import json, os, re, subprocess, sys, tempfile, urllib.request
 sys.path.insert(0, os.path.dirname(__file__))
-from fetch_data import get, BASE, OK_LICENSES, LICENSE_URLS, UA
+from fetch_data import get, OK_LICENSES, LICENSE_URLS, UA, LAT, LNG
 
-TIERS = [("Recorded in this area", {"lat": BASE["lat"], "lng": BASE["lng"], "radius": BASE["radius"]}),
+NEAR = "Recorded near Linwood (within 15 km)"
+TIERS = [(NEAR, {"lat": LAT, "lng": LNG, "radius": 15}),
          ("Recorded in New Jersey", {"place_id": 51}),
          ("Recorded in the eastern US", {"swlat": 24, "swlng": -90, "nelat": 48, "nelng": -66}),
          ("Recorded outside the eastern US", {})]
@@ -20,10 +21,7 @@ def kind_of(o):
         if any(k in n for k in ("vocal", "call", "song", "sound")):
             if "song" in v and "call" not in v: return "Song"
             if "call" in v and "song" not in v: return "Call"
-    desc = (o.get("description") or "").lower()
-    song = re.search(r"\bsongs?\b|\bsinging\b", desc); call = re.search(r"\bcalls?\b|\bcalling\b", desc)
-    if song and not call: return "Song"
-    if call and not song: return "Call"
+    # free-text descriptions are NOT parsed: they often mention other species ("song sparrow in background")
     return None
 
 def pick(taxon_id):
@@ -48,7 +46,10 @@ def main():
     out = {}
     for i, b in enumerate(birds):
         key = str(b["id"]); fn = f"audio/{b['id']}.mp3"
-        if key in old and os.path.exists(fn): out[key] = old[key]; continue
+        if key in old and os.path.exists(fn):
+            out[key] = old[key]
+            if out[key]["where"] == "Recorded in this area": out[key]["where"] = NEAR
+            continue
         r = pick(b["id"])
         if not r: print(f"[{i+1}/{len(birds)}] none: {b['com']}"); continue
         label, o, s, lc = r
@@ -75,6 +76,8 @@ def main():
         print(f"[{i+1}/{len(birds)}] {b['com']}: {label}, {out[key]['license']}, {dur:.1f}s")
         json.dump(out, open("data/sounds.json", "w"), indent=0, ensure_ascii=False)
     json.dump(out, open("data/sounds.json", "w"), indent=0, ensure_ascii=False)
+    for f in os.listdir("audio"):   # prune clips for birds no longer on the list
+        if f.endswith(".mp3") and f[:-4] not in out: os.remove(os.path.join("audio", f))
     print("birds with sound:", len(out), "of", len(birds))
 
 if __name__ == "__main__":

@@ -1,28 +1,45 @@
 #!/usr/bin/env python3
-"""Pull real, research-grade wildlife data from the free iNaturalist API (v1)
-into data/species.json. No API key needed. Polite: ~1 request/second.
+"""Pull real, research-grade wildlife observations from the free iNaturalist API (v1)
+and keep only what could realistically turn up at a mainland Linwood, NJ home:
 
-Search area: a ~15 km circle around the Linwood, NJ town centroid (public
-OpenStreetMap boundary centroid, rounded) -- covers the South Jersey shore
-back-bay marsh, barrier islands and pine-barrens edge."""
+  * search circle: 5 km around the Linwood town centre (public OSM town centroid, rounded)
+  * every observation point is classified with OpenStreetMap data (data/geo.json):
+      barrier-island towns (Margate, Longport, Ventnor, Atlantic City, Ocean City) -> dropped
+      tidal / open water (seaward of the OSM coastline, bays, channels, lakes)  -> dropped
+      salt marsh / marsh edge -> kept, flagged "marsh";  everything else -> "land"
+  * obscured (privacy-randomised) points and points with >1 km GPS uncertainty -> dropped
+  * marine-only taxa (cetaceans, seals, sea turtles, pelagic/ocean birds, ...) -> dropped,
+    unless at least one kept record is clearly over land: mainland land (not marsh) and
+    at least 300 m from the shoreline (so shore-based photos of birds on the bay don't count)
+Output: data/species.json. No API key needed; ~1 request/second."""
 import json, re, time, datetime, urllib.request, urllib.parse, sys, os
+from collections import Counter, defaultdict
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from geo import Geo
 
 API = "https://api.inaturalist.org/v1"
-LAT, LNG, RADIUS_KM = 39.34, -74.58, 15   # Linwood town centroid (rounded), not any address
-UA = "linwood-wild/1.0 (static wildlife site; github.com/jgonthego/linwood-wild)"
+LAT, LNG, RADIUS_KM = 39.34, -74.58, 5   # Linwood town centroid (rounded) -- not any address
+UA = "linwood-wild/1.0 (static wildlife site)"
 OK_LICENSES = {"cc0": "CC0", "cc-by": "CC BY", "cc-by-sa": "CC BY-SA", "cc-by-nc": "CC BY-NC"}
 LICENSE_URLS = {"cc0": "https://creativecommons.org/publicdomain/zero/1.0/",
                 "cc-by": "https://creativecommons.org/licenses/by/4.0/",
                 "cc-by-sa": "https://creativecommons.org/licenses/by-sa/4.0/",
                 "cc-by-nc": "https://creativecommons.org/licenses/by-nc/4.0/"}
 GROUPS = [
-    ("birds",   "Birds",                   {"iconic_taxa": "Aves"}),
-    ("mammals", "Mammals",                 {"iconic_taxa": "Mammalia"}),
-    ("herps",   "Reptiles & Amphibians",   {"iconic_taxa": "Reptilia,Amphibia"}),
-    ("insects", "Insects",                 {"iconic_taxa": "Insecta"}),
-    # Arachnida (spiders, ticks, mites, harvestmen) + Myriapoda (centipedes, millipedes) + Isopoda (pill bugs etc.)
-    ("crawlies","Spiders & other bugs",    {"taxon_id": "47119,144128,48147"}),
+    ("birds",   "Birds",                 {"iconic_taxa": "Aves"}),
+    ("mammals", "Mammals",               {"iconic_taxa": "Mammalia"}),
+    ("herps",   "Reptiles & Amphibians", {"iconic_taxa": "Reptilia,Amphibia"}),
+    ("insects", "Insects",               {"iconic_taxa": "Insecta"}),
+    # Arachnida (spiders, ticks, mites, harvestmen) + Myriapoda (centipedes, millipedes) + Oniscidea (land isopods: pill/sow bugs)
+    ("crawlies","Spiders & other bugs",  {"taxon_id": "47119,144128,84718"}),
 ]
+# Marine-only taxa (iNaturalist taxon ids). Dropped unless a kept record is on mainland land.
+MARINE = {152871: "whales & dolphins (Cetacea)", 372843: "seals (Phocoidea)", 46306: "manatees (Sirenia)",
+          372234: "sea turtles (Chelonioidea)", 39675: "leatherback turtles (Dermochelyidae)",
+          3784: "gannets & boobies (Sulidae)", 71295: "auks & puffins (Alcidae)", 71367: "jaegers & skuas (Stercorariidae)",
+          4020: "shearwaters & petrels (Procellariidae)", 71326: "storm-petrels (Hydrobatidae)", 793435: "storm-petrels (Oceanitidae)",
+          4323: "pelicans (Pelecanidae)", 4619: "loons (Gaviidae)", 7031: "scoters (Melanitta)", 7023: "eiders (Somateria)",
+          7169: "Long-tailed Duck (Clangula)", 7110: "Harlequin Duck (Histrionicus)"}
 BASE = {"lat": LAT, "lng": LNG, "radius": RADIUS_KM, "quality_grade": "research"}
 _last = [0.0]
 
@@ -41,13 +58,13 @@ def get(path, params=None):
             time.sleep(5 * (attempt + 1))
     raise RuntimeError("failed: " + url)
 
-def species_counts(extra):
-    out, page = [], 1
+def observations(extra):
+    out, above = [], 0
     while True:
-        d = get("/observations/species_counts", {**BASE, **extra, "per_page": 500, "page": page})
-        out += d["results"]
-        if page * 500 >= d["total_results"] or not d["results"]: return out
-        page += 1
+        d = get("/observations", {**BASE, **extra, "per_page": 200, "order_by": "id", "order": "asc", "id_above": above})
+        if not d["results"]: return out
+        out += d["results"]; above = d["results"][-1]["id"]
+        if len(d["results"]) < 200: return out
 
 def photo(p):
     if not p or (p.get("license_code") or "").lower() not in OK_LICENSES: return None
@@ -58,70 +75,86 @@ def photo(p):
 
 def clean_summary(html):
     if not html: return None
-    t = re.sub(r"<[^>]+>", "", html)
-    t = re.sub(r"\s+", " ", t).strip()
-    t = re.sub(r"\s*\([^()]*\)", "", t)  # drop parentheticals (pronunciations etc.)
-    sents = re.split(r"(?<=[.!?])\s+(?=[A-Z])", t)
-    s = " ".join(sents[:2])
+    t = re.sub(r"<[^>]+>", "", html); t = re.sub(r"\s+", " ", t).strip()
+    t = re.sub(r"\s*\([^()]*\)", "", t)
+    s = " ".join(re.split(r"(?<=[.!?])\s+(?=[A-Z])", t)[:2])
     return s[:320].rsplit(" ", 1)[0] + "…" if len(s) > 320 else s
 
 def main():
+    geo = Geo(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "geo.json"))
     now = datetime.datetime.now(datetime.timezone.utc)
-    species = {}
+    sp, drops = {}, Counter()
     for key, label, q in GROUPS:
-        print("group", key)
-        for r in species_counts(q):
-            t = r["taxon"]
-            species[t["id"]] = {"id": t["id"], "g": key, "sci": t["name"],
-                "com": t.get("preferred_common_name") or "", "n": r["count"],
-                "m": [0]*12, "ph": photo(t.get("default_photo")),
-                "wiki_url": t.get("wikipedia_url"), "ancestor_ids": t.get("ancestor_ids", [])}
-        for m in range(1, 13):
-            for r in species_counts({**q, "month": m}):
-                s = species.get(r["taxon"]["id"])
-                if s: s["m"][m-1] = r["count"]
-            print(f"  month {m} ok")
-    # taxon details: order/family names, Wikipedia summary, alternate open-licensed photos
-    ids = list(species)
+        obs = observations(q); print(f"group {key}: {len(obs)} raw observations")
+        for o in obs:
+            t = o.get("taxon") or {}
+            if not t or (t.get("rank_level") or 0) > 10: drops["coarser than species"] += 1; continue
+            if o.get("obscured") or o.get("geoprivacy") in ("obscured", "private") or o.get("taxon_geoprivacy") in ("obscured", "private"):
+                drops["obscured location"] += 1; continue
+            if (o.get("positional_accuracy") or 0) > 1000: drops["GPS uncertainty > 1 km"] += 1; continue
+            gj = o.get("geojson") or {}
+            if not gj.get("coordinates"): drops["no coordinates"] += 1; continue
+            lon, lat = gj["coordinates"]
+            kind, town = geo.classify(lon, lat)
+            if kind in ("water", "island"): drops["on " + ("barrier island" if kind == "island" else "water")] += 1; continue
+            sid = t["id"] if t.get("rank_level", 10) >= 10 else t["ancestor_ids"][-2]   # roll subspecies up to species
+            s = sp.get(sid)
+            if not s:
+                s = sp[sid] = {"id": sid, "g": key, "sci": t["name"] if sid == t["id"] else "", "com": (t.get("preferred_common_name") or "") if sid == t["id"] else "",
+                               "n": 0, "m": [0]*12, "ph": photo(t.get("default_photo")) if sid == t["id"] else None,
+                               "wiki_url": t.get("wikipedia_url") if sid == t["id"] else None,
+                               "anc": set(t.get("ancestor_ids", [])), "_k": Counter(), "_t": Counter(), "_last": ("", None)}
+            s["n"] += 1; s["_k"][kind] += 1
+            if kind == "land" and any(k in s["anc"] for k in MARINE) and geo.coast_dist_m(lon, lat) >= 300:
+                s["_k"]["inland"] += 1
+            if town: s["_t"][town] += 1
+            mo = (o.get("observed_on_details") or {}).get("month")
+            if mo: s["m"][mo - 1] += 1
+            d = o.get("observed_on") or ""
+            if d > s["_last"][0]: s["_last"] = (d, o["id"])
+    # marine-only rule
+    removed, kept_exc = [], []
+    for sid in list(sp):
+        s = sp[sid]; hit = [v for k, v in MARINE.items() if k in s["anc"]]
+        if not hit: continue
+        if s["_k"]["inland"] > 0: kept_exc.append((sid, hit[0])); s["marine_exception"] = True
+        else: removed.append((sid, hit[0])); 
+    # taxon details: names for rolled-up species, order/family, Wikipedia summary, open-licensed photos
+    ids = list(sp)
     for i in range(0, len(ids), 30):
-        batch = ids[i:i+30]
-        d = get("/taxa/" + ",".join(map(str, batch)))
-        for t in d["results"]:
-            s = species.get(t["id"])
+        for t in get("/taxa/" + ",".join(map(str, ids[i:i+30])))["results"]:
+            s = sp.get(t["id"])
             if not s: continue
+            s["sci"] = t["name"]; s["com"] = t.get("preferred_common_name") or s["com"]
             for a in t.get("ancestors", []):
                 if a["rank"] == "order": s["order"] = a["name"]
-                if a["rank"] == "family":
-                    s["family"] = a["name"]; s["family_com"] = a.get("preferred_common_name") or ""
+                if a["rank"] == "family": s["family"] = a["name"]; s["family_com"] = a.get("preferred_common_name") or ""
             s["fact"] = clean_summary(t.get("wikipedia_summary"))
             if t.get("wikipedia_url"): s["wiki_url"] = t["wikipedia_url"]
+            if not s["ph"]: s["ph"] = photo(t.get("default_photo"))
             if not s["ph"]:
                 for tp in t.get("taxon_photos", []):
                     ph = photo(tp.get("photo"))
                     if ph: s["ph"] = ph; break
-            cs = [c for c in t.get("conservation_statuses", []) if c.get("place") and c["place"].get("name") == "New Jersey"]
-            if cs: s["nj_status"] = cs[0].get("status_name") or cs[0].get("status")
-        print(f"  taxa {i+len(batch)}/{len(ids)}")
-    # rarest birds: latest research-grade sighting date (no locations kept)
-    rare = sorted([s for s in species.values() if s["g"] == "birds"], key=lambda s: s["n"])
-    rare = [s for s in rare if s["n"] <= 2]
-    for s in rare:
-        d = get("/observations", {**BASE, "taxon_id": s["id"], "order_by": "observed_on", "order": "desc", "per_page": 1})
-        if d["results"]:
-            o = d["results"][0]
-            s["last_seen"] = o.get("observed_on"); s["last_obs"] = f"https://www.inaturalist.org/observations/{o['id']}"
-    for s in species.values(): s.pop("ancestor_ids", None)
-    out = {"pulled_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-           "pulled_date": datetime.datetime.now().strftime("%Y-%m-%d"),
-           "area": {"label": "Linwood & the South Jersey shore (Atlantic County, NJ)", "radius_km": RADIUS_KM,
-                    "towns": ["Linwood", "Northfield", "Somers Point", "Egg Harbor Twp", "Pleasantville",
-                              "Absecon", "Margate", "Ventnor", "Atlantic City", "Ocean City (north end)"]},
-           "source": "iNaturalist API v1 — research-grade observations",
+        print(f"  taxa {min(i+30, len(ids))}/{len(ids)}")
+    removed_info = [{"id": sid, "com": sp[sid]["com"], "sci": sp[sid]["sci"], "rule": r, "n": sp[sid]["n"]} for sid, r in removed]
+    exc_info = [{"id": sid, "com": sp[sid]["com"], "sci": sp[sid]["sci"], "rule": r, "n": sp[sid]["n"], "land": sp[sid]["_k"]["inland"]} for sid, r in kept_exc]
+    for sid, _ in removed: del sp[sid]
+    towns = Counter()
+    for s in sp.values():
+        k = s.pop("_k"); s["land"] = k["land"]; s["marsh"] = k["marsh"]
+        towns.update(s.pop("_t")); d, oid = s.pop("_last"); s.pop("anc")
+        if d: s["last_seen"] = d; s["last_obs"] = f"https://www.inaturalist.org/observations/{oid}"
+    out = {"pulled_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "pulled_date": datetime.datetime.now().strftime("%Y-%m-%d"),
+           "area": {"label": "Mainland Linwood, NJ & immediate surroundings", "radius_km": RADIUS_KM,
+                    "towns": [t for t, c in towns.most_common() if c >= 5]},
+           "source": "iNaturalist API v1 — research-grade observations; locations classified with OpenStreetMap data",
+           "dropped_observations": dict(drops), "removed_marine": removed_info, "marine_kept_on_land": exc_info,
            "groups": [{"key": k, "label": l} for k, l, _ in GROUPS],
-           "species": sorted(species.values(), key=lambda s: -s["n"])}
-    os.makedirs("data", exist_ok=True)
+           "species": sorted(sp.values(), key=lambda s: -s["n"])}
     with open("data/species.json", "w") as f: json.dump(out, f, separators=(",", ":"), ensure_ascii=False)
-    print("species:", len(species))
+    print("species:", len(sp), "dropped obs:", dict(drops), "towns:", dict(towns))
+    print("removed by marine rule:", [(r["com"], r["n"]) for r in removed_info]); print("kept (land record):", [(r["com"], r["land"]) for r in exc_info])
 
 if __name__ == "__main__":
     main()

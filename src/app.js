@@ -4,8 +4,8 @@ var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
 var MONL=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var CUR=new Date().getMonth();
 var GANGS={
-  yard:{name:"The Locals",desc:"Yard, woods & field birds — songbirds, woodpeckers, doves, hummingbirds.",c:"#c6ff3d"},
-  marsh:{name:"Marsh Mafia",desc:"Shorebirds, gulls, terns, herons, waterfowl & everything else that lives on the back bay and beach.",c:"#3fd0ff"},
+  yard:{name:"The Locals",desc:"Yard & neighborhood birds — songbirds, woodpeckers, doves, hummingbirds, plus the geese & ducks that work the lawns and ponds.",c:"#c6ff3d"},
+  marsh:{name:"Marsh Mafia",desc:"Flyovers & nearby marsh — herons, egrets, gulls, terns, shorebirds, ducks & marsh sparrows mostly recorded on the bay-marsh edge or overhead, not in yards.",c:"#3fd0ff"},
   raptor:{name:"Sky Predators",desc:"Hawks, eagles, falcons, ospreys, owls & vultures.",c:"#ff4f2e"}
 };
 var PAGE=48;
@@ -54,7 +54,7 @@ function sndHtml(s){
 function card(s){
   var c=el("article","card");
   var badge="";
-  if(s.n<=2)badge='<span class="badge rare">Rare</span>';
+  if(s.n<=1)badge='<span class="badge rare">Rare</span>';
   else if(s.m[CUR]&&s._rankNow&&s._rankNow<=10)badge='<span class="badge">Hot now</span>';
   var fact=s.fact?'<details class="fx"><summary>Fun fact</summary><p class="fact">'+esc(s.fact)+
     (s.wiki_url?' <a href="'+esc(s.wiki_url)+'" target="_blank" rel="noopener">— Wikipedia</a>':'')+'</p></details>':"";
@@ -62,6 +62,7 @@ function card(s){
     '<div class="cb"><h3><a href="'+turl(s)+'" target="_blank" rel="noopener">'+esc(name(s))+'</a></h3>'+
     '<div class="sci">'+esc(s.sci)+'</div>'+
     '<div class="meta"><span><b>'+fmt(s.n)+'</b> obs</span><span>'+esc(s.family_com||s.family||"")+'</span></div>'+
+    (s.cat?'<div class="where w-'+s.cat+'">'+(s.cat==="marsh"?"Flyover / nearby marsh":s.cat==="raptor"?"Raptor":"Yard &amp; neighborhood")+(s.n?' · '+Math.round(100*(s.marsh||0)/s.n)+'% of records at marsh edge':'')+'</div>':'')+
     season(s)+sndHtml(s)+fact+attrHtml(s)+'</div>';
   return c;
 }
@@ -151,7 +152,7 @@ function renderGangs(birds){
 }
 
 function renderGhosts(birds){
-  var arr=birds.filter(function(s){return s.n<=2;}).sort(function(a,b){return (b.last_seen||"").localeCompare(a.last_seen||"");});
+  var arr=birds.filter(function(s){return s.n<=1;}).sort(function(a,b){return (b.last_seen||"").localeCompare(a.last_seen||"");});
   var box=document.getElementById("ghostList");
   if(!arr.length){box.innerHTML='<p class="empty">None.</p>';return;}
   arr.forEach(function(s){
@@ -165,7 +166,7 @@ function renderGhosts(birds){
 function renderGroup(sec,items,isBirds){
   var ctl=el("div","ctl");
   ctl.innerHTML='<input type="search" placeholder="Search '+items.length+' species…" aria-label="Search species">'+
-    (isBirds?'<select data-f="cat" aria-label="Bird crew"><option value="">All crews</option><option value="yard">The Locals (yard)</option><option value="marsh">Marsh Mafia (marsh/shore)</option><option value="raptor">Sky Predators (raptors)</option></select>':'')+
+    (isBirds?'<select data-f="cat" aria-label="Bird crew"><option value="">All crews</option><option value="yard">The Locals (yard)</option><option value="marsh">Marsh Mafia (flyovers / nearby marsh)</option><option value="raptor">Sky Predators (raptors)</option></select>':'')+
     '<select data-f="mon" aria-label="Month"><option value="">Any month</option>'+MONL.map(function(m,i){return '<option value="'+i+'">Seen in '+m+'</option>';}).join("")+'</select>'+
     '<select data-f="sort" aria-label="Sort"><option value="n">Most common</option><option value="r">Rarest first</option><option value="a">A–Z</option><option value="now">Hot this month</option></select>'+
     '<span class="cnt"></span>';

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LINWOOD WILD — South Jersey Shore Wildlife</title>
-<meta name="description" content="Every research-grade wildlife species logged on iNaturalist around Linwood and the South Jersey shore: birds, mammals, reptiles, amphibians, insects and spiders, with seasonality.">
+<title>LINWOOD WILD — Backyard Wildlife of Mainland Linwood, NJ</title>
+<meta name="description" content="Every research-grade wildlife species logged on iNaturalist on the mainland around Linwood, NJ: birds, mammals, reptiles, amphibians, insects and spiders, with seasonality.">
 <meta name="theme-color" content="#0b0d0c">
 <link rel="preload" href="assets/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css?v={{VER}}">
@@ -17,9 +17,9 @@
   </nav>
   <div class="hero-in">
     <div id="heroPics" class="heropics" aria-label="Most-logged birds around here"></div>
-    <p class="kicker">South Jersey shore · back-bay marsh · pine barrens edge</p>
+    <p class="kicker">Mainland Linwood · backyards · bay-marsh edge</p>
     <h1>LINWOOD<br><span>WILD</span></h1>
-    <p class="lede">Every creature with a <b>research-grade</b> iNaturalist record within ~{{RADIUS}} km of Linwood — from the marsh to the boardwalk. Real sightings. Zero made-up stuff.</p>
+    <p class="lede">Every creature with a <b>research-grade</b> iNaturalist record on the mainland within ~{{RADIUS}} km of Linwood's town centre — the stuff that can actually show up in a Linwood yard or fly over it. No beach, no boats, no barrier islands. Real sightings. Zero made-up stuff.</p>
     <div class="stats">
       <div><b>{{TOTAL}}</b><span>species</span></div>
       <div><b>{{BIRDS}}</b><span>birds</span></div>
@@ -44,13 +44,13 @@
 
   <section id="gangs" class="sec">
     <h2 class="t"><span class="tag">Bird gangs</span>Pick Your Crew</h2>
-    <p class="sub">Every bird species sorted by where it hangs out (grouped by taxonomic order).</p>
+    <p class="sub">Sorted by where the local records actually are: yard &amp; neighborhood birds vs. the marsh and bay birds that mostly fly over or stick to the marsh edge just east of town.</p>
     <div id="gangGrid" class="gangs"></div>
   </section>
 
   <section id="ghosts" class="sec">
     <h2 class="t"><span class="tag">Rare as hell</span>Ghost Sightings</h2>
-    <p class="sub">Bird species with only one or two research-grade records in the area. Blink and you missed 'em.</p>
+    <p class="sub">Bird species with exactly one usable research-grade record around mainland Linwood. Blink and you missed 'em.</p>
     <div id="ghostList" class="ghosts"></div>
   </section>
 
@@ -72,9 +72,10 @@
 </main>
 
 <footer class="foot">
-  <p><b>Data:</b> <a href="https://www.inaturalist.org/" rel="noopener">iNaturalist</a> API v1, research-grade observations only, ~{{RADIUS}} km around Linwood, NJ. Pulled <b>{{DATE}}</b>. Counts = number of research-grade observations (all years); month bars = observations per calendar month.</p>
+  <p><b>Data:</b> <a href="https://www.inaturalist.org/" rel="noopener">iNaturalist</a> API v1, research-grade observations only, within ~{{RADIUS}} km of the Linwood, NJ town centre. Pulled <b>{{DATE}}</b>. Counts = number of research-grade observations (all years); month bars = observations per calendar month.</p>
+  <p><b>Mainland only:</b> every observation's coordinates were checked against <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> data (© OpenStreetMap contributors, ODbL). Records on the barrier islands (Margate, Longport, Ocean City…), on bay or open water, with privacy-obscured locations, or with GPS uncertainty over 1 km were dropped ({{DROPPED}} observations). Ocean-only animals (whales, dolphins, seals, sea turtles, gannets, scoters, eiders, loons, pelicans, shearwaters and the like) are excluded unless a record sits on mainland land here. Records on the salt-marsh edge are kept; birds found mostly there are filed under "Flyovers &amp; nearby marsh".</p>
   <p><b>Photos:</b> from iNaturalist, shown only when licensed CC0, CC BY, CC BY-SA or CC BY-NC; each card shows its photographer credit and license. Species with no open-licensed photo show a placeholder.</p>
-  <p><b>Sounds:</b> {{SOUNDS}} bird species have a recording — one clip each from a research-grade iNaturalist observation with a CC0, CC BY, CC BY-SA or CC BY-NC sound license, preferring recordings made in this area, then New Jersey, then the eastern US. Clips are trimmed to at most 15 seconds and re-encoded as mono MP3; the recordist, license and source observation are shown with every player. "Song"/"Call" labels appear only when the recordist noted it. xeno-canto was not used (its API requires an account key).</p>
+  <p><b>Sounds:</b> {{SOUNDS}} bird species have a recording — one clip each from a research-grade iNaturalist observation with a CC0, CC BY, CC BY-SA or CC BY-NC sound license, preferring recordings made within 15 km of Linwood, then New Jersey, then the eastern US. Clips are trimmed to at most 15 seconds and re-encoded as mono MP3; the recordist, license and source observation are shown with every player. "Song"/"Call" labels appear only when the recordist tagged it in a structured iNaturalist field (free-text notes are not used). xeno-canto was not used (its API requires an account key).</p>
   <p><b>Fun facts:</b> first lines of the species' Wikipedia article, as provided through the iNaturalist API (Wikipedia text is <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>).</p>
   <p class="small">Not a field guide or checklist authority — just what people have photographed and the iNat community has confirmed. Fonts: Anton &amp; Space Grotesk (SIL OFL).</p>
 </footer>

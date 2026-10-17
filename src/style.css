@@ -145,3 +145,5 @@ details.fx summary{cursor:pointer;color:var(--sky);font-size:13px;font-weight:70
  .lede,.stats,.towns{max-width:52%}
 }
 h1 span{text-shadow:5px 5px 0 rgba(255,79,46,.45)}
+.where{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--acid)}
+.where.w-marsh{color:var(--sky)}.where.w-raptor{color:var(--hot)}
