@@ -1,11 +1,18 @@
 # Linwood Wild
 
-Static site showing every wildlife species with research-grade [iNaturalist](https://www.inaturalist.org) observations within ~15 km of Linwood, NJ (South Jersey shore, Atlantic County): birds, mammals, reptiles & amphibians, insects, and spiders & other bugs.
+Static site listing every wildlife species you could possibly see around Linwood, NJ,
+rated **Likely / Possible / Rare** from real records:
 
-- `scripts/fetch_data.py` pulls data from the free iNaturalist API v1 (no key) into `data/species.json`
-  (species counts, per-month counts, open-licensed photos only: CC0 / CC BY / CC BY-SA / CC BY-NC, Wikipedia summaries via iNat).
-- `build.py` builds `docs/` from `src/` + data. No dependencies.
-- GitHub Actions deploys to Pages on push, and refreshes the data monthly.
+- `scripts/fetch_possible.py` counts GBIF occurrence records since 2000 (eBird EOD, iNaturalist research-grade,
+  museum specimens) in rings of 2 km, 8 km and 15 km around a fixed center point (mainland only; the barrier islands
+  are cut off along the back-bay line in `scripts/zones.py`), applies the likelihood rules, drops ocean-only
+  taxa, and adds names, open-licensed photos and Wikipedia summaries from iNaturalist.
+- `scripts/fetch_habitat.py` summarises NJDEP Land Use/Land Cover 2015 around the point (rounded % only).
+- `scripts/fetch_sounds.py` adds one openly licensed iNaturalist recording per bird (trimmed with ffmpeg).
+- `build.py` builds `docs/`; GitHub Actions deploys to Pages and refreshes the data monthly.
 
-Fonts: Anton and Space Grotesk, SIL Open Font License (see `src/fonts`).
-Photos remain the property of their photographers under the license shown with each photo.
+The center point is never published: it lives in the git-ignored `data/home.private.json` locally and in the
+`HOME_LAT` / `HOME_LNG` repository secrets for the monthly refresh.
+
+Fonts: Anton and Space Grotesk (SIL OFL). Photos and recordings belong to their authors under the license shown.
+OSM data (c) OpenStreetMap contributors (ODbL).

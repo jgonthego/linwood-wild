@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LINWOOD WILD — Backyard Wildlife of Mainland Linwood, NJ</title>
-<meta name="description" content="Every research-grade wildlife species logged on iNaturalist on the mainland around Linwood, NJ: birds, mammals, reptiles, amphibians, insects and spiders, with seasonality.">
+<title>LINWOOD WILD — Wildlife You Could See Around Linwood, NJ</title>
+<meta name="description" content="Every bird, mammal, reptile, amphibian, insect and spider you could possibly see around Linwood, NJ — rated Likely, Possible or Rare from real GBIF / eBird / iNaturalist records, with seasons, photos and bird sounds.">
 <meta name="theme-color" content="#0b0d0c">
 <link rel="preload" href="assets/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css?v={{VER}}">
@@ -13,44 +13,48 @@
 <body>
 <header class="hero">
   <nav class="topnav" aria-label="Sections">
-    <a href="#now">Now</a><a href="#quiz">Quiz</a><a href="#gangs">Gangs</a><a href="#ghosts">Ghosts</a><a href="#birds">Birds</a><a href="#mammals">Fur</a><a href="#herps">Scales</a><a href="#insects">Bugs</a><a href="#crawlies">Bite</a>
+    <a href="#now">Now</a><a href="#quiz">Quiz</a><a href="#gangs">Gangs</a><a href="#ghosts">Wild cards</a><a href="#birds">Birds</a><a href="#mammals">Fur</a><a href="#herps">Scales</a><a href="#insects">Bugs</a><a href="#crawlies">Bite</a>
   </nav>
   <div class="hero-in">
-    <div id="heroPics" class="heropics" aria-label="Most-logged birds around here"></div>
-    <p class="kicker">Mainland Linwood · backyards · bay-marsh edge</p>
+    <div id="heroPics" class="heropics" aria-label="Most likely birds"></div>
+    <p class="kicker">Linwood, NJ · yards &amp; back-bay marsh · what could show up</p>
     <h1>LINWOOD<br><span>WILD</span></h1>
-    <p class="lede">Every creature with a <b>research-grade</b> iNaturalist record on the mainland within ~{{RADIUS}} km of Linwood's town centre — the stuff that can actually show up in a Linwood yard or fly over it. No beach, no boats, no barrier islands. Real sightings. Zero made-up stuff.</p>
+    <p class="lede">Everything you could <b>possibly</b> see around Linwood’s yards and back-bay marsh — rated <b class="lk">Likely</b>, <b class="ps">Possible</b> or <b class="rr">Rare</b> from {{RECORDS}} real wildlife records logged nearby. No guesses. No made-up stuff.</p>
     <div class="stats">
-      <div><b>{{TOTAL}}</b><span>species</span></div>
+      <div><b>{{TOTAL}}</b><span>possible species</span></div>
+      <div><b>{{LIKELY}}</b><span>likely</span></div>
       <div><b>{{BIRDS}}</b><span>birds</span></div>
-      <div><b>{{OBS}}</b><span>observations</span></div>
     </div>
-    <p class="towns">Turf: {{TOWNS}}</p>
+    <div class="habitat">
+      <h2>The Turf</h2>
+      <p>{{HAB2K}}</p>
+      <ul>{{HABNOTES}}</ul>
+    </div>
   </div>
 </header>
 
 <main>
   <section id="now" class="sec">
     <h2 class="t"><span class="tag">Right now</span>What's Out There in <em id="nowMonth">{{MONTH}}</em></h2>
-    <p class="sub">Birds ranked by how often they've been logged in <span class="nowm">{{MONTH}}</span> (all years). The higher the number, the better your odds.</p>
+    <p class="sub">Likely &amp; possible birds ranked by how often they turn up nearby in <span class="nowm">{{MONTH}}</span> — share of all bird records within 8 km that month (mostly eBird checklists).</p>
     <ol id="nowList" class="nowlist"></ol>
   </section>
 
   <section id="quiz" class="sec">
     <h2 class="t"><span class="tag">Ear training</span>Name That Bird</h2>
-    <p class="sub">Hit play, listen, pick the bird. Every sound is a real, openly licensed recording from iNaturalist of a bird that shows up here in <span class="nowm">{{MONTH}}</span>.</p>
+    <p class="sub">Hit play, listen, pick the bird. Every sound is a real, openly licensed iNaturalist recording of a bird that's <b>likely</b> here in <span class="nowm">{{MONTH}}</span>.</p>
     <div id="quizBox" class="quiz"></div>
   </section>
 
   <section id="gangs" class="sec">
     <h2 class="t"><span class="tag">Bird gangs</span>Pick Your Crew</h2>
-    <p class="sub">Sorted by where the local records actually are: yard &amp; neighborhood birds vs. the marsh and bay birds that mostly fly over or stick to the marsh edge just east of town.</p>
+    <p class="sub">Likely &amp; possible birds by lifestyle: yard &amp; neighborhood birds, the marsh and bay crowd that flies over or works the nearby marsh edge, and the hunters.</p>
     <div id="gangGrid" class="gangs"></div>
   </section>
 
   <section id="ghosts" class="sec">
-    <h2 class="t"><span class="tag">Rare as hell</span>Ghost Sightings</h2>
-    <p class="sub">Bird species with exactly one usable research-grade record around mainland Linwood. Blink and you missed 'em.</p>
+    <h2 class="t"><span class="tag">Rare as hell</span>Wild Cards</h2>
+    <p class="sub">Rare birds — vagrants and one-offs with only a handful of records nearby. If one of these lands in your yard, call somebody.</p>
     <div id="ghostList" class="ghosts"></div>
   </section>
 
@@ -67,19 +71,19 @@
     <h2 class="t"><span class="tag">Insects</span>The Six-Legged Swarm</h2>
   </section>
   <section id="crawlies" class="sec grp" data-g="crawlies">
-    <h2 class="t"><span class="tag">Spiders, ticks, centipedes &amp; pill bugs</span>Things That Bite</h2>
+    <h2 class="t"><span class="tag">Spiders, ticks, centipedes &amp; millipedes</span>Things That Bite</h2>
   </section>
 </main>
 
 <footer class="foot">
-  <p><b>Data:</b> <a href="https://www.inaturalist.org/" rel="noopener">iNaturalist</a> API v1, research-grade observations only, within ~{{RADIUS}} km of the Linwood, NJ town centre. Pulled <b>{{DATE}}</b>. Counts = number of research-grade observations (all years); month bars = observations per calendar month.</p>
-  <p><b>Mainland only:</b> every observation's coordinates were checked against <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> data (© OpenStreetMap contributors, ODbL). Records on the barrier islands (Margate, Longport, Ocean City…), on bay or open water, with privacy-obscured locations, or with GPS uncertainty over 1 km were dropped ({{DROPPED}} observations). Ocean-only animals (whales, dolphins, seals, sea turtles, gannets, scoters, eiders, loons, pelicans, shearwaters and the like) are excluded unless a record sits on mainland land here. Records on the salt-marsh edge are kept; birds found mostly there are filed under "Flyovers &amp; nearby marsh".</p>
-  <p><b>Photos:</b> from iNaturalist, shown only when licensed CC0, CC BY, CC BY-SA or CC BY-NC; each card shows its photographer credit and license. Species with no open-licensed photo show a placeholder.</p>
-  <p><b>Sounds:</b> {{SOUNDS}} bird species have a recording — one clip each from a research-grade iNaturalist observation with a CC0, CC BY, CC BY-SA or CC BY-NC sound license, preferring recordings made within 15 km of Linwood, then New Jersey, then the eastern US. Clips are trimmed to at most 15 seconds and re-encoded as mono MP3; the recordist, license and source observation are shown with every player. "Song"/"Call" labels appear only when the recordist tagged it in a structured iNaturalist field (free-text notes are not used). xeno-canto was not used (its API requires an account key).</p>
-  <p><b>Fun facts:</b> first lines of the species' Wikipedia article, as provided through the iNaturalist API (Wikipedia text is <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>).</p>
-  <p class="small">Not a field guide or checklist authority — just what people have photographed and the iNat community has confirmed. Fonts: Anton &amp; Space Grotesk (SIL OFL).</p>
+  <p><b>How the list is built:</b> every species with a wildlife record since 2000 in <a href="https://www.gbif.org/" rel="noopener">GBIF</a> (which bundles <a href="https://ebird.org/" rel="noopener">eBird</a> checklists, <a href="https://www.inaturalist.org/" rel="noopener">iNaturalist</a> research-grade observations and museum specimens) within about 15 km of Linwood, <b>mainland only</b> — the barrier islands and ocean are cut off. Each species is rated by how many records sit inside three rings: 2 km, 8 km and 15 km. Data pulled <b>{{DATE}}</b>.</p>
+  <p><b>Birds:</b> {{RULE_BIRDS}}. <b>Everything else:</b> {{RULE_OTHER}}. Bird seasons and month bars use eBird checklists only: the share of all eBird bird records per month within 8 km, which evens out the fact that more people go birding in some months. Other groups show raw records per month within 15 km.</p>
+  <p><b>Left out:</b> ocean-only animals (whales, dolphins, seals, sea turtles, gannets, shearwaters, storm-petrels, jaegers, alcids, loons, scoters, eiders, pelicans and similar) — {{REMOVED}} species dropped by that rule. Names that couldn't be matched to an iNaturalist species ({{UNMATCHED}}) are also left out. <b>Coverage limits:</b> birds are very well covered thanks to eBird. Insects, spiders and herps depend on what people happened to photograph, so the real number of bugs is far higher than shown — mostly butterflies, moths, dragonflies, bees and beetles make the list.</p>
+  <p><b>"Logged near here":</b> research-grade iNaturalist sightings within about 5 km on the mainland (separate count, from an earlier pull).</p>
+  <p><b>Habitat:</b> {{HABSRC}}.</p>
+  <p><b>Photos:</b> from iNaturalist, only when licensed CC0, CC BY, CC BY-SA or CC BY-NC; each card shows the photographer credit and license. <b>Sounds:</b> {{SOUNDS}} birds have one clip each from a research-grade iNaturalist observation with a CC0 / CC BY / CC BY-SA / CC BY-NC sound license, preferring recordings from near Linwood, then New Jersey, then the eastern US; clips are trimmed to 15 seconds or less and re-encoded as mono MP3, credited next to each player. xeno-canto wasn't used because its API needs an account key. <b>Fun facts:</b> the first lines of each species' Wikipedia article, via the iNaturalist API (<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA</a>).</p>
+  <p class="small">GBIF.org ({{DATE}}) GBIF Occurrence Search, https://www.gbif.org. Not a field guide or official checklist. Fonts: Anton &amp; Space Grotesk (SIL OFL).</p>
 </footer>
-<script>window.WILD_MONTH_BUILD={{MONTHIDX}};</script>
 <script src="assets/app.js?v={{VER}}" defer></script>
 </body>
 </html>

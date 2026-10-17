@@ -147,3 +147,15 @@ details.fx summary{cursor:pointer;color:var(--sky);font-size:13px;font-weight:70
 h1 span{text-shadow:5px 5px 0 rgba(255,79,46,.45)}
 .where{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--acid)}
 .where.w-marsh{color:var(--sky)}.where.w-raptor{color:var(--hot)}
+/* likelihood */
+.lk,.tx-likely{color:var(--acid)}.ps,.tx-possible{color:var(--gold)}.rr,.tx-rare{color:var(--hot)}
+.badge.b-likely{background:var(--acid);color:#000}.badge.b-possible{background:var(--gold);color:#000}.badge.b-rare{background:var(--hot);color:#fff}
+.badge2{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;font-weight:700;padding:3px 7px;border:1px solid var(--sky)}
+.sea{color:var(--tx);font-weight:700}
+.evid{font-size:11px;color:#8b9a91}.evid b{color:var(--gold)}
+.habitat{margin-top:22px;max-width:640px;border-left:4px solid var(--sky);padding:4px 0 4px 14px}
+.habitat h2{font:400 28px Anton,sans-serif;text-transform:uppercase;margin:0 0 4px;color:var(--sky)}
+.habitat p{margin:2px 0;color:#cfd9d2}
+.habitat ul{margin:6px 0 0;padding-left:18px;color:var(--mut);font-size:14px}
+.ghost .play.mini{width:30px;height:30px;flex-basis:30px;font-size:12px;margin-top:6px}
+@media (min-width:1000px){.habitat{max-width:52%}}

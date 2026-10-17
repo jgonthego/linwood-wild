@@ -12,16 +12,8 @@ def main():
     d = json.load(open("data/species.json"))
     for s in d["species"]:
         if s["g"] == "birds":
-            # Decided from where the local iNaturalist records actually are (OSM land vs marsh),
-            # with taxonomic order as the tie-breaker:
-            o, n = s.get("order", ""), s["n"]
-            land_share = s.get("land", 0) / n if n else 0
-            if o in RAPTOR: s["cat"] = "raptor"
-            # bay/marsh orders are always "flyovers / nearby marsh" -- except ducks & geese whose local
-            # records are mostly on mainland land (lawns, neighbourhood ponds)
-            elif o in WATER: s["cat"] = "yard" if (o == "Anseriformes" and n >= 5 and land_share >= 0.6) else "marsh"
-            # land birds: only filed under marsh if the local records are overwhelmingly at the marsh edge
-            else: s["cat"] = "marsh" if ((n >= 3 and land_share < 0.25) or (n < 3 and s.get("marsh", 0) > s.get("land", 0))) else "yard"
+            o = s.get("order", "")
+            s["cat"] = "raptor" if o in RAPTOR else "marsh" if o in WATER else "yard"
     snd = json.load(open("data/sounds.json")) if os.path.exists("data/sounds.json") else {}
     for s in d["species"]:
         a = snd.get(str(s["id"]))
@@ -37,11 +29,20 @@ def main():
     ver = hashlib.sha1((payload + open("src/app.js").read() + open("src/style.css").read()).encode()).hexdigest()[:8]
     m = datetime.date.today().month - 1
     sp = d["species"]
-    rep = {"VER": ver, "RADIUS": str(d["area"]["radius_km"]), "TOTAL": f"{len(sp):,}",
-           "BIRDS": str(sum(1 for s in sp if s["g"] == "birds")), "OBS": f"{sum(s['n'] for s in sp):,}",
-           "TOWNS": " · ".join(d["area"]["towns"]), "MONTH": MONTHS[m], "MONTHIDX": str(m),
-           "DATE": d["pulled_date"], "SOUNDS": str(d["sound_count"]),
-           "DROPPED": f"{sum(d.get('dropped_observations', {}).values()):,}"}
+    hab = json.load(open("data/habitat.json"))
+    def habline(key, label):
+        parts = [f"~{v}% {k}" for k, v in hab[key].items()]
+        return f"<b>{label}:</b> " + ", ".join(parts) + "."
+    lik = sum(1 for s in sp if s["lik"] == "likely")
+    recs = sum(s["A"] + s["B"] + s["C"] for s in sp)  # (zones nest, so this over-counts; only used as "tens of thousands")
+    recs_c = sum(s["C"] for s in sp)
+    rep = {"VER": ver, "TOTAL": f"{len(sp):,}", "LIKELY": str(lik),
+           "BIRDS": str(sum(1 for s in sp if s["g"] == "birds")), "RECORDS": f"{recs_c:,}",
+           "MONTH": MONTHS[m], "DATE": d["pulled_date"], "SOUNDS": str(d["sound_count"]),
+           "HAB500": habline("500m", "Within 0.5 km"), "HAB2K": habline("2000m", "Within 2 km"),
+           "HABNOTES": "".join(f"<li>{n}</li>" for n in hab["notes"]), "HABSRC": hab["source"],
+           "RULE_BIRDS": d["rules"]["birds"], "RULE_OTHER": d["rules"]["other"],
+           "REMOVED": str(len(d["removed_marine"])), "UNMATCHED": str(len(d["unmatched_names"]))}
     html = open("src/index.html").read()
     for k, v in rep.items(): html = html.replace("{{" + k + "}}", v)
     open("docs/index.html", "w").write(html)

@@ -38,8 +38,8 @@ MARINE = {152871: "whales & dolphins (Cetacea)", 372843: "seals (Phocoidea)", 46
           372234: "sea turtles (Chelonioidea)", 39675: "leatherback turtles (Dermochelyidae)",
           3784: "gannets & boobies (Sulidae)", 71295: "auks & puffins (Alcidae)", 71367: "jaegers & skuas (Stercorariidae)",
           4020: "shearwaters & petrels (Procellariidae)", 71326: "storm-petrels (Hydrobatidae)", 793435: "storm-petrels (Oceanitidae)",
-          4323: "pelicans (Pelecanidae)", 4619: "loons (Gaviidae)", 7031: "scoters (Melanitta)", 7023: "eiders (Somateria)",
-          7169: "Long-tailed Duck (Clangula)", 7110: "Harlequin Duck (Histrionicus)"}
+          7031: "scoters (Melanitta)", 7023: "eiders (Somateria)",
+          4328: "Brown Pelican (Pelecanus occidentalis)", 7169: "Long-tailed Duck (Clangula)", 7110: "Harlequin Duck (Histrionicus)"}
 BASE = {"lat": LAT, "lng": LNG, "radius": RADIUS_KM, "quality_grade": "research"}
 _last = [0.0]
 

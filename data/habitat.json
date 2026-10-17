@@ -1,0 +1,19 @@
+{
+ "500m": {
+  "residential yards": 45,
+  "salt marsh": 40,
+  "other developed": 5
+ },
+ "2000m": {
+  "salt marsh": 35,
+  "residential yards": 30,
+  "bay & tidal water": 20,
+  "other developed": 10
+ },
+ "source": "NJDEP Land Use/Land Cover 2015 (NJGIN), sampled on a 25 m grid; percentages rounded to 5%",
+ "notes": [
+  "Suburban yards on the edge of the back-bay salt marsh",
+  "Tidal creeks and bay water within 2 km",
+  "Woods: only small patches (under 5%) within 2 km \u2014 no pine-barrens forest"
+ ]
+}

@@ -21,10 +21,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh iNaturalist data (keeps committed data if the API is down)
+      - name: Refresh possible-species data from GBIF + iNaturalist (keeps committed data on failure)
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        timeout-minutes: 30
-        run: python scripts/fetch_data.py || git checkout -- data/species.json
+        timeout-minutes: 60
+        env:
+          HOME_LAT: ${{ secrets.HOME_LAT }}
+          HOME_LNG: ${{ secrets.HOME_LNG }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null || true
+          if [ -z "$HOME_LAT" ]; then echo "HOME_LAT secret missing; keeping committed data"; exit 0; fi
+          python scripts/fetch_possible.py || git checkout -- data/species.json
+          python scripts/fetch_sounds.py || git checkout -- data/sounds.json audio
       - name: Build
         run: python build.py
       - uses: actions/upload-pages-artifact@v3
